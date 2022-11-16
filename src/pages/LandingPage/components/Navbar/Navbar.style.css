@@ -1,0 +1,38 @@
+li:last-child a {
+  background: #346af2;
+  color: white;
+}
+a.active {
+  color: #346af2;
+}
+.logo {
+  width: 100px;
+}
+header {
+  padding: 5px 5vw;
+}
+
+.mobile__close .first {
+  position: relative;
+  margin: 0 !important;
+  transform: rotate(40deg);
+  transition: all ease 400ms;
+}
+.mobile__close .second {
+  position: relative;
+  margin: 0 !important;
+  transform: rotate(-40deg);
+  transition: all ease 400ms;
+  top: -3.7px;
+}
+.mobile__close .third {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -1000;
+  transition: all ease 100ms;
+}
+.mobile__open .first,
+.mobile__open .second {
+  transition: all ease-out 10ms;
+}
