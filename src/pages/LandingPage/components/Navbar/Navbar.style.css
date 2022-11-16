@@ -2,6 +2,9 @@ li:last-child a {
   background: #346af2;
   color: white;
 }
+li:last-child a:hover {
+  color: white !important;
+}
 a.active {
   color: #346af2;
 }

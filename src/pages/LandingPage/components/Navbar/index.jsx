@@ -5,7 +5,7 @@ import "../../../../utils/constants/NavbarData.style.css";
 import WaveLogo from "../../../../assets/images/Wave-Logo.png";
 import "./Navbar.style.css";
 const Navbar = () => {
-  const [menu, setMenu] = React.useState(false);
+  const [menu, setMenu] = React.useState(true);
   const handleMobileMenuToggle = () => setMenu((menu) => !menu);
   return (
     <header className="flex justify-between items-center h-[80px]">
