@@ -6,7 +6,7 @@ const LandingPage = () => {
     <>
       <Navbar />
       {/* <Children /> */}
-      <code className="bg-[#ffffff] text-primary">
+      <code className="px-2">
         if you can't see anything, then it's becuase you are in dark mode. So
         Switch!
       </code>
