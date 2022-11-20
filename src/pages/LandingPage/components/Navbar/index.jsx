@@ -4,13 +4,13 @@ import { NavbarData } from "../../../../utils/constants/NavbarData";
 import "../../../../utils/constants/NavbarData.style.css";
 import WaveLogo from "../../../../assets/images/Wave-Logo.png";
 import "./Navbar.style.css";
-import { MdClose, MdMail, MdLocalPhone } from "react-icons/md";
+import { MdClose, MdMail, MdMenuMdMenu, MdLocalPhone } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
 import { ImFacebook, ImTwitter, ImLinkedin2 } from "react-icons/im";
 
 const Navbar = () => {
   const [menu, setMenu] = React.useState(true);
-  console.log(menu);
+
   const handleMobileMenuToggle = () => setMenu((menu) => !menu);
   return (
     <header className="flex justify-between items-center h-[80px] relative">
@@ -38,9 +38,7 @@ const Navbar = () => {
             menu ? "mobile__open" : "mobile__close"
           }`}
         >
-          <span className="bg-secondary-dark w-[30px] h-[4px] block my-[4px] rounded-sm first"></span>
-          <span className="bg-secondary-dark w-[30px] h-[4px] block my-[4px] rounded-sm second"></span>
-          <span className="bg-secondary-dark w-[30px] h-[4px] block my-[4px] rounded-sm third"></span>
+          <MdMenu size={40} />
         </div>
       </nav>
 
@@ -54,26 +52,40 @@ const Navbar = () => {
             <img src={WaveLogo} alt="" className="" />
           </div>
           <MdClose
-            size={35}
+            size={40}
             onClick={handleMobileMenuToggle}
             className="text-secondary-dark font-bold"
           />
         </div>
         <ul>
           <li className="leading-20 py-2 text-xl">
-            <a href="/">Home</a>
+            <a href="/" onClick={() => setMenu(true)}>
+              Home
+            </a>
           </li>
           <li className="leading-20 py-2 text-xl">
-            <a href="/about-us">About Us</a>
+            <a href="/about-us" onClick={() => setMenu(true)}>
+              About Us
+            </a>
           </li>
           <li className="leading-20 py-2 text-xl">
-            <a href="/project">Project</a>
+            <a href="/project" onClick={() => setMenu(true)}>
+              Project
+            </a>
           </li>
           <li className="leading-20 py-2 text-xl">
-            <a href="/contact-us">Contact Us</a>
+            <a href="/contact-us" onClick={() => setMenu(true)}>
+              Contact Us
+            </a>
           </li>
           <li className="leading-20 py-2 text-xl">
-            <a href="/get-started" className="px-5">APPLY NOW</a>
+            <a
+              href="/get-started"
+              onClick={() => setMenu(true)}
+              className="px-5"
+            >
+              APPLY NOW
+            </a>
           </li>
         </ul>
 
