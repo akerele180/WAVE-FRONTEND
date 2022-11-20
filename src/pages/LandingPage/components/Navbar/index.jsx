@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { NavbarData } from "../../../../utils/constants/NavbarData";
 import "../../../../utils/constants/NavbarData.style.css";
 import WaveLogo from "../../../../assets/images/Wave-Logo.png";
@@ -54,38 +54,41 @@ const Navbar = () => {
           <MdClose
             size={40}
             onClick={handleMobileMenuToggle}
-            className="text-secondary-dark font-bold"
+            className="text-secondary-dark font-bold cursor-pointer"
           />
         </div>
         <ul>
-          <li className="leading-20 py-2 text-xl">
-            <a href="/" onClick={() => setMenu(false)}>
-              Home
-            </a>
+          <li
+            className="leading-20 py-2 text-xl"
+            onClick={() => setMenu(true)}
+          >
+            <Link to="/">Home</Link>
           </li>
-          <li className="leading-20 py-2 text-xl">
-            <a href="/about-us" onClick={() => setMenu(false)}>
-              About Us
-            </a>
+          <li
+            className="leading-20 py-2 text-xl"
+            onClick={() => setMenu(true)}
+          >
+            <Link to="/about-us">About Us</Link>
           </li>
-          <li className="leading-20 py-2 text-xl">
-            <a href="/project" onClick={() => setMenu(false)}>
-              Project
-            </a>
+          <li
+            className="leading-20 py-2 text-xl"
+            onClick={() => setMenu(true)}
+          >
+            <Link to="/product">Project</Link>
           </li>
-          <li className="leading-20 py-2 text-xl">
-            <a href="/contact-us" onClick={() => setMenu(false)}>
-              Contact Us
-            </a>
+          <li
+            className="leading-20 py-2 text-xl"
+            onClick={() => setMenu(true)}
+          >
+            <Link to="/contact-us">Contact Us</Link>
           </li>
-          <li className="leading-20 py-2 text-xl">
-            <a
-              href="/get-started"
-              onClick={() => setMenu(false)}
-              className="px-5 py-3"
-            >
+          <li
+            className="leading-20 py-2 text-xl"
+            onClick={() => setMenu(true)}
+          >
+            <Link to="/get-started" className="px-5 py-3">
               APPLY NOW
-            </a>
+            </Link>
           </li>
         </ul>
 
