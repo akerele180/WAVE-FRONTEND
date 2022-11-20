@@ -77,7 +77,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <ul className="absolute right-0 left-0 bottom-10 flex items-center justify-around gap-2">
+        <ul className="absolute right-0 left-0 bottom-10 flex items-center justify-around gap-2 border-t-2 pt-3">
           <li>
             <ImFacebook size={30} />
           </li>

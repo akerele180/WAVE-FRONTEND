@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Heading } from "../components/Heading";
-import ProductImage from "../../../assets/images/WAVE WebApp(3).png";
-import ThankYou from "../../../assets/images/WAVE WebApp(5).png";
-import { motion } from "framer-motion";
-import { BsSuitHeartFill } from "react-icons/bs";
+import ThankYou from "../../../assets/images/WAVE WebApp(10).png";
+import ProofOfFundz from "../../../assets/images/WAVE WebApp(11).png";
 
-const ContactUsPage = () => {
+import { BsSuitHeartFill } from "react-icons/bs";
+import { motion } from "framer-motion";
+
+const ProofOfFunds = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(true);
@@ -14,7 +15,7 @@ const ContactUsPage = () => {
   return (
     <>
       {show ? (
-        <ContactUsPageResponse />
+        <ProofOfFundsResponse />
       ) : (
         <motion.section
           initial={{ opacity: 0 }}
@@ -23,12 +24,11 @@ const ContactUsPage = () => {
           className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
         >
           <div>
-            <Heading heading={"Contact Us"} />
+            <Heading heading={"Apply for Proof of Funds"} />
             <form
               className="mt-5 md:mt-10"
               onSubmit={(e) => {
                 e.preventDefault();
-                // setShow(true);
               }}
             >
               <input
@@ -39,7 +39,7 @@ const ContactUsPage = () => {
               <input
                 type="text"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                placeholder="Surname"
+                placeholder="Last Name"
               />
               <input
                 type="email"
@@ -49,15 +49,22 @@ const ContactUsPage = () => {
               <input
                 type="tel"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                placeholder="Phone Number"
+                placeholder="Whatsapp Number"
               />
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="5"
-                placeholder="Enter your message"
+              <input
+                type="text"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="Amount needed?"
+              />
+              <input
+                type="text"
+                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="How soon do you need the funds?"
+              />
+              <input
+                type="text"
+                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="How long do you need the funds for?"
               />
 
               <button
@@ -65,32 +72,22 @@ const ContactUsPage = () => {
                 type="submit"
                 onClick={handleShow}
               >
-                SEND
+                APPLY
               </button>
             </form>
           </div>
           <div className="max-md:hidden">
-            <img src={ProductImage} alt="" />
+            <img src={ProofOfFundz} alt="" />
           </div>
-          <nav className="col-span-2 max-md:hidden">
-            <ul className="flex items-center justify-center">
-              <li className="px-4 cursor-pointer">Twitter</li>
-              <li className="px-4 cursor-pointer">Facebook</li>
-              <li className="px-4 cursor-pointer">LinkedIn</li>
-              <li className="px-4 cursor-pointer">Instagram</li>
-              <li className="px-4 cursor-pointer">Phone Number</li>
-              <li className="px-4 cursor-pointer">Email Info</li>
-            </ul>
-          </nav>
         </motion.section>
       )}
     </>
   );
 };
 
-export default ContactUsPage;
+export default ProofOfFunds;
 
-const ContactUsPageResponse = () => {
+const ProofOfFundsResponse = () => {
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -98,28 +95,22 @@ const ContactUsPageResponse = () => {
       exit={{ opacity: 0 }}
       className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
     >
-      <div className="mx-auto w-[200px]">
+      <div className="mx-auto w-[300px]">
         <img src={ThankYou} alt="" className="w-full" />
       </div>
       <div>
-        <p className="text-center">Thank you for contacting us!</p>
+        <p className="text-center mb-3 text-2xl text-orange">Thank you</p>
         <p className="text-center px-4">
-          We will attend to your message within the next 2 hours
+          We will reach out to you in the next 24 hours
         </p>
-        <p className="flex items-center text-center justify-center mt-4">
+        <p className="flex items-center text-center justify-center mt-2 font-bold ">
           <BsSuitHeartFill size={20} className="text-primary mr-1" /> WAVE
         </p>
       </div>
-      <nav className="col-span-2 max-md:hidden absolute bottom-4 left-0 right-0">
-        <ul className="flex items-center justify-center">
-          <li className="px-4 cursor-pointer">Twitter</li>
-          <li className="px-4 cursor-pointer">Facebook</li>
-          <li className="px-4 cursor-pointer">LinkedIn</li>
-          <li className="px-4 cursor-pointer">Instagram</li>
-          <li className="px-4 cursor-pointer">Phone Number</li>
-          <li className="px-4 cursor-pointer">Email Info</li>
-        </ul>
-      </nav>
+      <p className="col-span-2 max-md:hidden absolute bottom-4 left-0 right-0 text-center">
+        For any inquiries or compliant, please call this number{" "}
+        <strong>0123456789</strong> or email <strong>loan@getwave.ng</strong>
+      </p>
     </motion.section>
   );
 };

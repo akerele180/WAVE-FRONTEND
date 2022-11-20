@@ -2,6 +2,8 @@ import React from "react";
 import { Heading } from "../components/Heading";
 import GetStartedImage from "../../../assets/images/WAVE WebApp(4).png";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 
 const GetStarted = () => {
   return (
@@ -21,9 +23,11 @@ const GetStarted = () => {
           Salary Loans
         </button>
         <br />
-        <button className="my-2 p-3 w-full md:w-6/12 cursor-pointer bg-primary">
-          Proof of Funds
-        </button>
+        <Link to='/proof-of-funds'>
+          <button className="my-2 p-3 w-full md:w-6/12 cursor-pointer bg-primary">
+            Proof of Funds
+          </button>
+        </Link>
         <br />
         <button className="mt-4 w-1/2 md:w-4/12  border-secondary border-2 bg-secondary px-5 py-4 font-medium hover:text-secondary-dark hover:border-secondary-dark hover:bg-[#ffffff]">
           APPLY
