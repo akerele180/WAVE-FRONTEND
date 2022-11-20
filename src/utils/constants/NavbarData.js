@@ -17,6 +17,6 @@ export const NavbarData = [
   },
   {
     name: "APPLY NOW",
-    path: "/sign-up",
+    path: "/get-started",
   },
 ];

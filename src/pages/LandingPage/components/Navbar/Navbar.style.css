@@ -1,12 +1,12 @@
 li:last-child a {
-  background: #346af2;
-  color: white;
+  background: #d1efec;
+  color: #383434;
 }
 li:last-child a:hover {
   color: white !important;
 }
 a.active {
-  color: #346af2;
+  color: #19cfbd;
 }
 .logo {
   width: 100px;

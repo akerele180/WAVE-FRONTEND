@@ -1,15 +1,12 @@
 import React, { Children } from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 const LandingPage = () => {
   return (
     <>
       <Navbar />
-      {/* <Children /> */}
-      <code className="px-2">
-        if you can't see anything, then it's becuase you are in dark mode. So
-        Switch!
-      </code>
+      <Outlet />
     </>
   );
 };

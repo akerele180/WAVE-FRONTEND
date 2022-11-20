@@ -18,7 +18,7 @@ const Navbar = () => {
             <li key={item.name}>
               <NavLink
                 to={`${item.path}`}
-                className="px-3 py-4 hover:text-primary"
+                className="px-3 py-4 hover:text-secondary-dark"
               >
                 {item.name}
               </NavLink>
@@ -31,9 +31,9 @@ const Navbar = () => {
             menu ? "mobile__open" : "mobile__close"
           }`}
         >
-          <span className="bg-primary w-[30px] h-[4px] block my-[4px] rounded-sm first"></span>
-          <span className="bg-primary w-[30px] h-[4px] block my-[4px] rounded-sm second"></span>
-          <span className="bg-primary w-[30px] h-[4px] block my-[4px] rounded-sm third"></span>
+          <span className="bg-secondary-dark w-[30px] h-[4px] block my-[4px] rounded-sm first"></span>
+          <span className="bg-secondary-dark w-[30px] h-[4px] block my-[4px] rounded-sm second"></span>
+          <span className="bg-secondary-dark w-[30px] h-[4px] block my-[4px] rounded-sm third"></span>
         </div>
       </nav>
     </header>
