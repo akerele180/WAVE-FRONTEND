@@ -10,7 +10,9 @@ const Navbar = () => {
   return (
     <header className="flex justify-between items-center h-[80px]">
       <div className="logo">
-        <img src={WaveLogo} alt="" className="" />
+        <a href="/">
+          <img src={WaveLogo} alt="" className="" />
+        </a>
       </div>
       <nav className="flex items-center">
         <ul className="md:flex justify-around flex-1 hidden">
