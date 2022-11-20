@@ -15,7 +15,7 @@ header {
   padding: 5px 5vw;
 }
 
-.mobile__close .first {
+/* .mobile__close .first {
   position: relative;
   margin: 0 !important;
   transform: rotate(40deg);
@@ -38,4 +38,4 @@ header {
 .mobile__open .first,
 .mobile__open .second {
   transition: all ease-out 10ms;
-}
+} */
