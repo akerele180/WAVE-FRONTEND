@@ -5,9 +5,9 @@
   font-family: Rubik, Helvetica, Arial, sans-serif;
   font-size: 16px;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark;
   color: #213547;
-  background-color: #fff;
+  background-color: #fff; */
   /* background-color: #242424; */
 
   font-synthesis: none;
@@ -28,9 +28,9 @@ body {
   overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-}
+} */

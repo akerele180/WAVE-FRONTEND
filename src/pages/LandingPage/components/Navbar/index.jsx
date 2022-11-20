@@ -43,7 +43,7 @@ const Navbar = () => {
       </nav>
 
       <nav
-        className={`border px-[5vw] fixed z-20 bg-[#fff] left-0 right-0 top-0 bottom-0 delay-500 transition ease-in duration-300 ${
+        className={` px-[5vw] fixed z-20 bg-[#fff] left-0 right-0 top-0 bottom-0 delay-500 transition ease-in duration-300 ${
           !menu ? "" : "opacity-0 translate-x-full"
         }`}
       >
@@ -58,34 +58,19 @@ const Navbar = () => {
           />
         </div>
         <ul>
-          <li
-            className="leading-20 py-2 text-xl"
-            onClick={() => setMenu(true)}
-          >
+          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
             <Link to="/">Home</Link>
           </li>
-          <li
-            className="leading-20 py-2 text-xl"
-            onClick={() => setMenu(true)}
-          >
+          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
             <Link to="/about-us">About Us</Link>
           </li>
-          <li
-            className="leading-20 py-2 text-xl"
-            onClick={() => setMenu(true)}
-          >
+          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
             <Link to="/product">Project</Link>
           </li>
-          <li
-            className="leading-20 py-2 text-xl"
-            onClick={() => setMenu(true)}
-          >
+          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
             <Link to="/contact-us">Contact Us</Link>
           </li>
-          <li
-            className="leading-20 py-2 text-xl"
-            onClick={() => setMenu(true)}
-          >
+          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
             <Link to="/get-started" className="px-5 py-3">
               APPLY NOW
             </Link>
