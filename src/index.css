@@ -6,8 +6,9 @@
   font-size: 16px;
 
   color-scheme: light dark;
-  color: #ffffffde;
-  background-color: #242424;
+  /* color: #ffffffde; */
+  background-color: #fff;
+  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
