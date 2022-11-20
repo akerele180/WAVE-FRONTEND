@@ -43,7 +43,7 @@ const Navbar = () => {
       </nav>
 
       <nav
-        className={`border px-[5vw] fixed z-20 bg-[#fff] left-0 right-0 top-0 bottom-0 delay-200 transition ease-in duration-500 ${
+        className={`border px-[5vw] fixed z-20 bg-[#fff] left-0 right-0 top-0 bottom-0 delay-500 transition ease-in duration-300 ${
           !menu ? "" : "opacity-0 translate-x-full"
         }`}
       >
