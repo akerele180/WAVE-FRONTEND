@@ -4,6 +4,7 @@ import { NavbarData } from "../../../../utils/constants/NavbarData";
 import "../../../../utils/constants/NavbarData.style.css";
 import WaveLogo from "../../../../assets/images/Wave-Logo.png";
 import "./Navbar.style.css";
+import "../../HomePage/Button.style.css";
 import { MdClose, MdMail, MdMenu, MdLocalPhone } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
 import { ImFacebook, ImTwitter, ImLinkedin2 } from "react-icons/im";
@@ -43,8 +44,8 @@ const Navbar = () => {
       </nav>
 
       <nav
-        className={` px-[5vw] fixed z-20 bg-[#fff] left-0 right-0 top-0 bottom-0 delay-500 transition ease-in duration-300 ${
-          !menu ? "" : "opacity-0 translate-x-full"
+        className={` px-[5vw] fixed z-20 bg-[#fff] left-0 right-0 top-0 bottom-0 delay-50 transition ease-in duration-300 ${
+          !menu ? "opacity-100" : "opacity-100 translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between h-[80px] py-[5px]">
@@ -58,20 +59,38 @@ const Navbar = () => {
           />
         </div>
         <ul>
-          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
+          <li
+            className="leading-20 py-2 text-xl text-center hover:text-secondary-dark hover:translate-x-1 ease-linear duration-150"
+            onClick={() => setMenu(true)}
+          >
             <Link to="/">Home</Link>
           </li>
-          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
+          <li
+            className="leading-20 py-2 text-xl  text-center hover:text-secondary-dark hover:translate-x-1 ease-linear duration-150"
+            onClick={() => setMenu(true)}
+          >
             <Link to="/about-us">About Us</Link>
           </li>
-          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
-            <Link to="/product">Project</Link>
+          <li
+            className="leading-20 py-2 text-xl  text-center hover:text-secondary-dark hover:translate-x-1 ease-linear duration-150"
+            onClick={() => setMenu(true)}
+          >
+            <Link to="/product">Product</Link>
           </li>
-          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
+          <li
+            className="leading-20 py-2 text-xl  text-center hover:text-secondary-dark hover:translate-x-1 ease-linear duration-150"
+            onClick={() => setMenu(true)}
+          >
             <Link to="/contact-us">Contact Us</Link>
           </li>
-          <li className="leading-20 py-2 text-xl" onClick={() => setMenu(true)}>
-            <Link to="/get-started" className="px-5 py-3">
+          <li
+            className="leading-20 py-2 mt-3 text-md text-center "
+            onClick={() => setMenu(true)}
+          >
+            <Link
+              to="/get-started"
+              className="border-2 border-secondary-dark slide slide__mob font-medium px-10 py-3 "
+            >
               APPLY NOW
             </Link>
           </li>

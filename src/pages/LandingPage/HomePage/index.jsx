@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
+import "./Button.style.css";
 
 const HomePage = () => {
   return (
@@ -25,9 +26,11 @@ const HomePage = () => {
         </p>
         <NavLink
           to="/get-started"
-          className="border-secondary border-2 bg-secondary px-5 py-4 font-medium hover:text-secondary-dark hover:border-secondary-dark hover:bg-[#ffffff] uppercase"
+          className="slide border-2  px-5 py-4 font-medium text-secondary-dark border-secondary-dark hover:bg-secondary uppercase hover:text-[#fff]"
         >
-          <button className="uppercase px-5 py-4 mt-5">apply now</button>
+          <button className="uppercase px-5 py-4 mt-5">
+            apply now <span className="font-bold text-xl">&rarr;</span>
+          </button>
         </NavLink>
       </div>
       <div className="max-md:hidden">

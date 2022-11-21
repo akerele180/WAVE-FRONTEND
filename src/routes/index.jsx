@@ -8,6 +8,7 @@ import AboutUsPage from "../pages/LandingPage/AboutUsPage";
 import ProductPage from "../pages/LandingPage/ProductPage";
 import GetStarted from "../pages/LandingPage/GetStarted";
 import POF from "../pages/LandingPage/ProofOfFunds";
+import Error404 from "../pages/ErrorPage";
 
 const AppRoutes = () => {
   return (
@@ -21,7 +22,7 @@ const AppRoutes = () => {
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/proof-of-funds" element={<POF />} />
         </Route>
-        <Route path="*" element={<>Not found...404</>} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </AnimatePresence>
   );
