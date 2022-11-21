@@ -17,8 +17,8 @@ const Error404 = () => {
 
                 <p>the page you are looking for is not available!</p>
 
-                <a href="" className="link_404">
-                  Go to Home
+                <a href="/" className="link_404">
+                  &larr; Go to Home
                 </a>
               </div>
             </div>
