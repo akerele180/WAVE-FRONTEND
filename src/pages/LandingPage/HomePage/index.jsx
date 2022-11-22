@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import "./Button.style.css";
+// import { sendGETRequest } from "../../../utils/hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrganizationInitialize } from "../../../redux/actions";
+import { Rings } from "react-loader-spinner";
 
 const HomePage = () => {
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { organization } = useSelector((state) => state);
+
+  useEffect(() => {
+    const fetches = async () => {
+      await dispatch(getOrganizationInitialize(setLoading));
+    };
+
+    fetches();
+  }, []);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -29,7 +45,20 @@ const HomePage = () => {
           className="slide border-2  px-5 py-4 font-medium text-secondary-dark border-secondary-dark hover:bg-secondary uppercase hover:text-[#fff]"
         >
           <button className="uppercase px-5 py-4 mt-5">
-            apply now <span className="font-bold text-xl">&rarr;</span>
+            {loading ? (
+              <Rings
+                height="80"
+                width="80"
+                color="#4fa94d"
+                radius="6"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="rings-loading"
+              />
+            ) : (
+              <span className="font-bold text">Apply now &rarr;</span>
+            )}
           </button>
         </NavLink>
       </div>

@@ -11,7 +11,6 @@ import { ImFacebook, ImTwitter, ImLinkedin2 } from "react-icons/im";
 
 const Navbar = () => {
   const [menu, setMenu] = React.useState(true);
-  console.log(menu);
   const handleMobileMenuToggle = () => setMenu((menu) => !menu);
   return (
     <header className="flex justify-between items-center h-[80px] relative">

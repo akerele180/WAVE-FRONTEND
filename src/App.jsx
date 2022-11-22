@@ -5,19 +5,19 @@ import AppRoutes from "./routes";
 
 function App() {
   return (
-    <div className="">
-      <BrowserRouter>
-        <Suspense
-          fallback={
-            <div className="h-full flex justify-center items-center">
-              <img src={WaveLogo} alt="" className="" />
-            </div>
-          }
-        >
+    <BrowserRouter>
+      <Suspense
+        fallback={
+          <div className="h-full flex justify-center items-center">
+            <img src={WaveLogo} alt="" className="" />
+          </div>
+        }
+      >
+        {/* <ToastContainer> */}
           <AppRoutes />
-        </Suspense>
-      </BrowserRouter>
-    </div>
+        {/* </ToastContainer> */}
+      </Suspense>
+    </BrowserRouter>
   );
 }
 

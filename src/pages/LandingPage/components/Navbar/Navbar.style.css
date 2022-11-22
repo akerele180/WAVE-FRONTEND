@@ -1,7 +1,7 @@
 li:last-child a {
-  background: #d1efec;
+  background: #19cfbd;
   font-weight: 500;
-  color: #383434;
+  color: #fff;
 }
 li:last-child a:hover {
   color: white !important;
