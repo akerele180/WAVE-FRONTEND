@@ -9,6 +9,7 @@ import ProductPage from "../pages/LandingPage/ProductPage";
 import GetStarted from "../pages/LandingPage/GetStarted";
 import POF from "../pages/LandingPage/ProofOfFunds";
 import Error404 from "../pages/ErrorPage";
+import ApplyForLoan from "../pages/LandingPage/ApplyForLoan";
 
 const AppRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const AppRoutes = () => {
           <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/proof-of-funds" element={<POF />} />
+          <Route path="/loan-apply" element={<ApplyForLoan />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

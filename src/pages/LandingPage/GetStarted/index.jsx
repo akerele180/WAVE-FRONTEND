@@ -4,7 +4,6 @@ import GetStartedImage from "../../../assets/images/WAVE WebApp(4).png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-
 const GetStarted = () => {
   return (
     <motion.section
@@ -15,21 +14,24 @@ const GetStarted = () => {
     >
       <div>
         <Heading heading={"Get Started"} />
-        <button className="mt-10 mb-2 p-3 w-full md:w-6/12 cursor-pointer bg-primary-light ease-in duration-75 hover:-translate-y-1">
-          Quick Loans
-        </button>
+        <Link to="/loan-apply">
+          <button className="mt-10 mb-2 p-3 w-full md:w-6/12 cursor-pointer bg-primary-light ease-in duration-75 hover:-translate-y-1">
+            Quick Loans
+          </button>
+          <br />
+        </Link>
+        <Link to="/loan-apply">
+          <button className="my-2 p-3 w-full md:w-6/12 cursor-pointer bg-orange-light ease-in duration-75 hover:-translate-y-1">
+            Salary Loans
+          </button>
+        </Link>
         <br />
-        <button className="my-2 p-3 w-full md:w-6/12 cursor-pointer bg-orange-light ease-in duration-75 hover:-translate-y-1">
-          Salary Loans
-        </button>
-        <br />
-        <Link to='/proof-of-funds'>
+        <Link to="/proof-of-funds">
           <button className="my-2 p-3 w-full md:w-6/12 cursor-pointer bg-primary ease-in duration-75 hover:-translate-y-1">
             Proof of Funds
           </button>
         </Link>
         <br />
-         
       </div>
       <div className="max-md:hidden">
         <img src={GetStartedImage} alt="" />

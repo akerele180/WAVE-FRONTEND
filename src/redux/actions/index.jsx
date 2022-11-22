@@ -18,10 +18,9 @@ export const getOrganizationInitialize = (setLoading) => {
         requestOptions
       );
 
-      // const a = res.then((result) => result.json());
       if (res.status === 200) {
         setLoading(false);
-        toast.success("Company initialized");
+
         const data = await res.json();
         await dispatch({
           type: "GET_ORGANIZATION_INITIALIZE",
@@ -29,7 +28,6 @@ export const getOrganizationInitialize = (setLoading) => {
         });
       } else {
         setLoading(false);
-        toast.error("success");
       }
     } catch (error) {
       setLoading(false);

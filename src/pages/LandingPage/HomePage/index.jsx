@@ -42,9 +42,9 @@ const HomePage = () => {
         </p>
         <NavLink
           to="/get-started"
-          className="slide border-2  px-5 py-4 font-medium text-secondary-dark border-secondary-dark hover:bg-secondary uppercase hover:text-[#fff]"
+          className="slide border-2 px-5 py-4 font-medium text-secondary-dark border-secondary-dark hover:bg-secondary uppercase hover:text-[#fff]"
         >
-          <button className="uppercase px-5 py-4 mt-5">
+          {/* <button className="uppercase px-5 py-4 mt-5">
             {loading ? (
               <Rings
                 height="80"
@@ -59,6 +59,9 @@ const HomePage = () => {
             ) : (
               <span className="font-bold text">Apply now &rarr;</span>
             )}
+          </button> */}
+          <button className="font-bold text uppercase px-5 py-4 mt-5">
+            Apply now &rarr;
           </button>
         </NavLink>
       </div>
