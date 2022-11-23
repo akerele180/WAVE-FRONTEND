@@ -22,7 +22,17 @@ textarea {
 a {
   text-decoration: none;
 }
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  appearance: textfield !important;
+  margin: 0 !important;
+}
+input[type="tel"],
+input[type="number"] {
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
 body {
   margin: 0;
   overflow-x: hidden;

@@ -2,24 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import "./Button.style.css";
-// import { sendGETRequest } from "../../../utils/hooks";
-import { useDispatch, useSelector } from "react-redux";
-import { getOrganizationInitialize } from "../../../redux/actions";
-import { Rings } from "react-loader-spinner";
 
 const HomePage = () => {
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-  const { organization } = useSelector((state) => state);
-
-  useEffect(() => {
-    const fetches = async () => {
-      await dispatch(getOrganizationInitialize(setLoading));
-    };
-
-    fetches();
-  }, []);
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
