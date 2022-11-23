@@ -27,10 +27,7 @@ const ApplyForLoan = () => {
   const { registeredCustomer } = useSelector(
     (state) => state.registeredCustomer
   );
-
-  console.log(loading2);
   console.log(registeredCustomer);
-
   useEffect(() => {
     const fetches = async () => {
       await dispatch(getOrganizationInitialize(setLoading));
@@ -57,7 +54,7 @@ const ApplyForLoan = () => {
 
   return (
     <>
-      {show ? (
+      {registeredCustomer.status === "success" ? (
         <ApplyForLoanResponse />
       ) : (
         <motion.section
@@ -73,12 +70,6 @@ const ApplyForLoan = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSubmit();
-                console.log(
-                  phoneRef.current.value,
-                  bankNameRef.current.props.value.label,
-                  accountNumberRef.current.value,
-                  bvnRef.current.value
-                );
 
                 // handleCustomerApplication(phoneRef.current.value);
                 // dispatch(registerCustomer(setLoading2, phoneRef.current.value))

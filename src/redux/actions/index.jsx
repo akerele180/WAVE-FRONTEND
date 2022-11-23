@@ -64,7 +64,6 @@ export const registerCustomer = (setLoading2, phonenumber) => {
         "https://api.veendhq.com/register",
         requestOptions
       );
-      console.log(res);
 
       if (res.ok) {
         setLoading2(false);
@@ -80,7 +79,7 @@ export const registerCustomer = (setLoading2, phonenumber) => {
 
         await dispatch({
           type: "REGISTER_CUSTOMER",
-          payload: data.data,
+          payload: data,
         });
       } else {
         setLoading2(false);
