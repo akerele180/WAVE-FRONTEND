@@ -10,8 +10,23 @@ import {
   getOrganizationInitialize,
   registerCustomer,
 } from "../../../redux/actions";
+import WaveModal from "../../../components/Modal";
 
 const ApplyForLoan = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
@@ -33,11 +48,11 @@ const ApplyForLoan = () => {
       await dispatch(getOrganizationInitialize(setLoading));
     };
 
-    fetches();
+    // fetches();
   }, []);
 
   useEffect(() => {
-    setBankListOptions(organization?.banklist);
+    // setBankListOptions(organization?.banklist);
   }, [organization]);
 
   const options = bankListOptions?.map((banks) => {
@@ -81,11 +96,7 @@ const ApplyForLoan = () => {
                 placeholder="Salary Phone Number"
                 ref={phoneRef}
               />
-              {/* <input
-                type="text"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                placeholder="Salary Bank Name"
-              /> */}
+
               <Select
                 ref={bankNameRef}
                 options={options}
@@ -128,14 +139,44 @@ const ApplyForLoan = () => {
               >
                 {loading2 ? "sending..." : "SEND"}
               </button>
+              {/* terms and condition here */}
+              <span className="block py-2">
+                <em>
+                  <span className="text-orange">&#9888;</span> Please, read the{" "}
+                  <a
+                    href="/src/assets/docs/Wave Term_Conditions and Privacy Policy.pdf"
+                    target="_blank"
+                    download="WAVE - Terms & condition, Privacy Policy"
+                    className="underline text-primary"
+                  >
+                    Terms and Condition
+                  </a>{" "}
+                  before applying for loan
+                </em>
+              </span>
+              {/* terms and condition above */}
             </form>
           </div>
           <div className="max-md:hidden">
             <img src={ProductImage} alt="" />
           </div>
+
+          <button
+            type="button"
+            className="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Launch demo modal
+          </button>
+
+          {true && <WaveConsentModal />}
+          {/* Footer nav for social links */}
           <nav className="col-span-2 max-md:hidden">
             <ul className="flex items-center justify-center">
-              <li className="px-4 cursor-pointer">Twitter</li>
+              <li className="px-4 cursor-pointer" id="myBtn">
+                Twitter
+              </li>
               <li className="px-4 cursor-pointer">Facebook</li>
               <li className="px-4 cursor-pointer">LinkedIn</li>
               <li className="px-4 cursor-pointer">Instagram</li>
@@ -183,5 +224,88 @@ const ApplyForLoanResponse = () => {
         </ul>
       </nav>
     </motion.section>
+  );
+};
+
+const WaveConsentModal = () => {
+  return (
+    <div
+      className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog relative w-auto pointer-events-none">
+        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+          <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <h5
+              className="text-xl font-medium leading-normal text-gray-800"
+              id="exampleModalLabel"
+            >
+              Consent
+            </h5>
+            <button
+              type="button"
+              className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body relative p-4 text-center font-light">
+            I hereby authorize{" "}
+            <strong>Waveafricabusinessconsultinglimited </strong>to obtain my
+            personal dara from 3rd parties, deduct loan settlements from my
+            salary and debit bank accounts linked to my identity for repayments.
+            I acknowledge that all information provided is accurate and
+            understand that once approved, this application is irreversible.
+          </div>
+          <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+            <button
+              type="button"
+              className="px-6
+          py-2.5
+          bg-purple-600
+          text-white
+          font-medium
+          text-xs
+          leading-tight  
+          rounded
+          shadow-md
+          hover:bg-purple-700 hover:shadow-lg
+          focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0
+          active:bg-purple-800 active:shadow-lg
+          transition
+          duration-150
+          ease-in-out"
+              data-bs-dismiss="modal"
+            >
+              Decline
+            </button>
+            <button
+              type="button"
+              className="px-6
+      py-2.5
+      bg-blue-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      rounded
+      shadow-md
+      hover:bg-blue-700 hover:shadow-lg
+      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-blue-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out
+      ml-1"
+            >
+              Consent
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

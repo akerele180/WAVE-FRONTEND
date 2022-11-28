@@ -10,6 +10,7 @@ import GetStarted from "../pages/LandingPage/GetStarted";
 import POF from "../pages/LandingPage/ProofOfFunds";
 import Error404 from "../pages/ErrorPage";
 import ApplyForLoan from "../pages/LandingPage/ApplyForLoan";
+import WaveModal from "../components/Modal";
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/proof-of-funds" element={<POF />} />
           <Route path="/loan-apply" element={<ApplyForLoan />} />
+          <Route path="/component" element={<WaveModal />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

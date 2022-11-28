@@ -1,7 +1,8 @@
-import { REGISTER_CUSTOMER } from "../actionTypes";
+import { REGISTER_CUSTOMER, SAVE_CUSTOMER_CONSENT } from "../actionTypes";
 
 const initialState = {
   registeredCustomer: {},
+  customerConsent: {},
 };
 
 export const customerReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ export const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         registeredCustomer: action.payload,
+      };
+    case SAVE_CUSTOMER_CONSENT:
+      return {
+        ...state,
+        customerConsent: action.payload,
       };
     default:
       return state;

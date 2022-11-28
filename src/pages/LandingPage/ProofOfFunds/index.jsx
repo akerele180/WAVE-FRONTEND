@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { Heading } from "../components/Heading";
 import ThankYou from "../../../assets/images/WAVE WebApp(10).png";
 import ProofOfFundz from "../../../assets/images/WAVE WebApp(11).png";
@@ -10,6 +11,31 @@ const ProofOfFunds = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(true);
+  };
+
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    console.log('object');
+    emailjs
+      .sendForm(
+        "service_yc9jwse",
+        "template_wz96lrt",
+        form.current,
+        "AJ02V-9d8EP0SzfAW"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+      
+    console.log("object");
+    console.log(form.current);
   };
 
   return (
@@ -25,52 +51,54 @@ const ProofOfFunds = () => {
         >
           <div>
             <Heading heading={"Apply for Proof of Funds"} />
-            <form
-              className="mt-5 md:mt-10"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
+            <form ref={form} className="mt-5 md:mt-10" onSubmit={sendEmail}>
               <input
                 type="text"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="First Name"
+                name="first_name"
               />
               <input
                 type="text"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Last Name"
+                name="last_name"
               />
               <input
                 type="email"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Email Address"
+                name="email"
               />
               <input
                 type="tel"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Whatsapp Number"
+                name="whatsapp"
               />
               <input
                 type="text"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Amount needed?"
+                name="amount_needed"
               />
               <input
                 type="text"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="How soon do you need the funds?"
+                name="when_needed"
               />
               <input
                 type="text"
                 className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="How long do you need the funds for?"
+                name="loan_duration"
               />
 
               <button
                 className="bg-secondary py-3 w-4/12 mt-4"
                 type="submit"
-                onClick={handleShow}
+                // onClick={handleShow}
               >
                 APPLY
               </button>
