@@ -6,8 +6,11 @@ import ProofOfFundz from "../../../assets/images/WAVE WebApp(11).png";
 
 import { BsSuitHeartFill } from "react-icons/bs";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import { LineWave } from "react-loader-spinner";
 
 const ProofOfFunds = () => {
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(true);
@@ -15,9 +18,10 @@ const ProofOfFunds = () => {
 
   const form = useRef();
   const sendEmail = (e) => {
+    setLoading(true);
     e.preventDefault();
 
-    console.log('object');
+    console.log("object");
     emailjs
       .sendForm(
         "service_yc9jwse",
@@ -27,13 +31,14 @@ const ProofOfFunds = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          setLoading(false);
+          toast.success("Application Sent");
         },
         (error) => {
           console.log(error.text);
         }
       );
-      
+
     console.log("object");
     console.log(form.current);
   };
@@ -96,11 +101,26 @@ const ProofOfFunds = () => {
               />
 
               <button
-                className="bg-secondary py-3 w-4/12 mt-4"
+                className="bg-secondary text-center py-3 w-4/12 mt-4"
                 type="submit"
                 // onClick={handleShow}
               >
-                APPLY
+                {loading ? (
+                  <LineWave
+                    height="50px"
+                    width="50px"
+                    color="#000"
+                    ariaLabel="line-wave"
+                    wrapperStyle={{}}
+                    wrapperClass="text-center"
+                    visible={true}
+                    firstLineColor=""
+                    middleLineColor=""
+                    lastLineColor=""
+                  />
+                ) : (
+                  "APPLY"
+                )}
               </button>
             </form>
           </div>
