@@ -146,10 +146,9 @@ const ApplyForLoan = () => {
                   required: true,
                 })}
               />
-              {errors.bank_name &&
-                errors.bank_name.type === "required" && (
-                  <p className="text-red-600">Select your bank</p>
-                )}
+              {errors.bank_name && errors.bank_name.type === "required" && (
+                <p className="text-red-600">Select your bank</p>
+              )}
               <input
                 ref={accountNumberRef}
                 type="number"
@@ -194,6 +193,31 @@ const ApplyForLoan = () => {
               {errors.bvn && errors.bvn.type === "maxLength" && (
                 <p className="text-red-600">{errors.bvn.message}</p>
               )}
+              {/* terms and condition here */}
+              <div className="flex gap-2">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  id="consent"
+                  className="accent-orange"
+                />
+                <label htmlFor="checkbox" className="block py-2">
+                  <em>
+                    <span className="text-orange">&#9888;</span> Please, read
+                    the{" "}
+                    <a
+                      href="/src/assets/docs/Wave Term_Conditions and Privacy Policy.pdf"
+                      target="_blank"
+                      download="WAVE - Terms & condition, Privacy Policy"
+                      className="underline text-primary"
+                    >
+                      Terms and Condition
+                    </a>{" "}
+                    before applying for loan
+                  </em>
+                </label>
+              </div>
+              {/* terms and condition above */}
               <button
                 className="bg-secondary py-3 w-4/12 mt-4"
                 type="submit"
@@ -201,22 +225,6 @@ const ApplyForLoan = () => {
               >
                 {loading2 ? "sending..." : "SEND"}
               </button>
-              {/* terms and condition here */}
-              <span className="block py-2">
-                <em>
-                  <span className="text-orange">&#9888;</span> Please, read the{" "}
-                  <a
-                    href="/src/assets/docs/Wave Term_Conditions and Privacy Policy.pdf"
-                    target="_blank"
-                    download="WAVE - Terms & condition, Privacy Policy"
-                    className="underline text-primary"
-                  >
-                    Terms and Condition
-                  </a>{" "}
-                  before applying for loan
-                </em>
-              </span>
-              {/* terms and condition above */}
             </form>
           </div>
           <div className="max-md:hidden">
