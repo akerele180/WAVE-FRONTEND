@@ -11,6 +11,7 @@ import {
   registerCustomer,
 } from "../../../redux/actions";
 import WaveModal from "../../../components/Modal";
+import { useForm } from "react-hook-form";
 
 const ApplyForLoan = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +37,14 @@ const ApplyForLoan = () => {
   const bankNameRef = useRef("");
   const accountNumberRef = useRef("");
   const bvnRef = useRef("");
+
+  const {
+    register,
+    formState: { errors },
+    reset,
+    handleSubmit,
+  } = useForm();
+  const form = useRef();
 
   const dispatch = useDispatch();
   const { organization } = useSelector((state) => state.organization);
@@ -63,7 +72,7 @@ const ApplyForLoan = () => {
     await dispatch(registerCustomer(setLoading2, phoneNo));
   };
 
-  const handleSubmit = () => {
+  const handleSubmitt = () => {
     dispatch(registerCustomer(setLoading2, phoneRef.current.value));
   };
 
@@ -79,24 +88,38 @@ const ApplyForLoan = () => {
           className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
         >
           <div>
-            <Heading heading={"Apply for Loan"} />
+            <Heading heading={"Apply for Quick Loan"} />
             <form
               className="mt-5 md:mt-10"
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSubmit();
+              onSubmit={
+                handleSubmit(handleSubmitt)
 
                 // handleCustomerApplication(phoneRef.current.value);
                 // dispatch(registerCustomer(setLoading2, phoneRef.current.value))
-              }}
+              }
             >
               <input
                 type="number"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                placeholder="Salary Phone Number"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="Phone Number"
                 ref={phoneRef}
-              />
-
+                name="phone_number"
+                {...register("phone_number", {
+                  required: true,
+                  maxLength: {
+                    value: 11,
+                    message: "Not up to 11 digits yet.",
+                  },
+                })}
+              />{" "}
+              {errors.phone_number &&
+                errors.phone_number.type === "required" && (
+                  <p className="text-red-600">Phone Number is required</p>
+                )}
+              {errors.phone_number &&
+                errors.phone_number.type === "maxLength" && (
+                  <p className="text-red-600">{errors.phone_number.message}</p>
+                )}
               <Select
                 ref={bankNameRef}
                 options={options}
@@ -117,21 +140,60 @@ const ApplyForLoan = () => {
                     // fontWeight: "medium",
                   }),
                 }}
-                className="focus:border-primary placeholder:text-grey placeholder:text-sm w-full fw-bold md:w-8/12 block text-sm"
+                className="focus:border-primary placeholder:text-grey placeholder:text-sm w-full fw-bold md:w-8/12 block text-sm mt-2"
+                name="bank_name"
+                {...register("bank_name", {
+                  required: true,
+                })}
               />
+              {errors.bank_name &&
+                errors.bank_name.type === "required" && (
+                  <p className="text-red-600">Select your bank</p>
+                )}
               <input
                 ref={accountNumberRef}
                 type="number"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Salary Account Number"
+                name="salary_account_number"
+                {...register("salary_account_number", {
+                  required: true,
+                  maxLength: {
+                    value: 10,
+                    message: "Not up to 10 digits yet.",
+                  },
+                })}
               />
+              {errors.salary_account_number &&
+                errors.salary_account_number.type === "required" && (
+                  <p className="text-red-600">Account number is required</p>
+                )}
+              {errors.salary_account_number &&
+                errors.salary_account_number.type === "maxLength" && (
+                  <p className="text-red-600">
+                    {errors.salary_account_number.message}
+                  </p>
+                )}
               <input
                 ref={bvnRef}
                 type="number"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Bank Verification Number (BVN)"
+                name="bvn"
+                {...register("bvn", {
+                  required: true,
+                  maxLength: {
+                    value: 10,
+                    message: "Not up to 11 digits yet.",
+                  },
+                })}
               />
-
+              {errors.bvn && errors.bvn.type === "required" && (
+                <p className="text-red-600">BVN is required</p>
+              )}
+              {errors.bvn && errors.bvn.type === "maxLength" && (
+                <p className="text-red-600">{errors.bvn.message}</p>
+              )}
               <button
                 className="bg-secondary py-3 w-4/12 mt-4"
                 type="submit"

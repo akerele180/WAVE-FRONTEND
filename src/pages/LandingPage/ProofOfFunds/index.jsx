@@ -97,9 +97,7 @@ const ProofOfFunds = () => {
                 <p className="text-red-600">First Name is required</p>
               )}
               {errors.first_name && errors.first_name.type === "minLength" && (
-                <p className="text-red-600">
-                  First Name must be greater than 3 letters
-                </p>
+                <p className="text-red-600">{errors.first_name.message}</p>
               )}
               <input
                 type="text"
@@ -118,9 +116,7 @@ const ProofOfFunds = () => {
                 <p className="text-red-600">Last Name is required</p>
               )}
               {errors.last_name && errors.last_name.type === "minLength" && (
-                <p className="text-red-600">
-                  Last Name must be greater than 3 letters
-                </p>
+                <p className="text-red-600">{errors.last_name.message}</p>
               )}
               <input
                 type="email"
@@ -176,23 +172,23 @@ const ProofOfFunds = () => {
                   },
                 })}
               />
-              {errors.whatsapp && errors.whatsapp.type === "required" && (
+              {errors.amount_needed && errors.amount_needed.type === "required" && (
                 <p className="text-red-600">Amount needed is required.</p>
               )}
-              {errors.whatsapp && errors.whatsapp.type === "whatsapp" && (
-                <p className="text-red-600">{errors.type.message}</p>
+              {errors.amount_needed && errors.amount_needed.type === "pattern" && (
+                <p className="text-red-600">{errors.amount_needed.message}</p>
               )}
               <input
                 type="date"
                 className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="How soon do you need the funds?"
                 name="when_needed"
-                {...register("when_needed", { required: "Pick a valid date" })}
+                {...register("when_needed", { required: true })}
               />
               {errors.when_needed && errors.when_needed.type === "required" && (
                 <p className="text-red-600">Date is required</p>
               )}
-              
+
               <input
                 type="number"
                 className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
