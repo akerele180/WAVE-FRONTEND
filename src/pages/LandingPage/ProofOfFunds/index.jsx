@@ -39,7 +39,15 @@ const ProofOfFunds = () => {
       .then(
         (result) => {
           setLoading(false);
-          toast.success("Application Sent");
+          toast.success("Application Sent", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
           handleShow();
           reset();
         },
@@ -209,9 +217,8 @@ const ProofOfFunds = () => {
                   <p className="text-red-600">{errors.type.message}</p>
                 )}
               <button
-                className="bg-secondary text-center py-3 w-4/12 mt-4 disabled"
+                className="bg-secondary flex items-center justify-center text-center py-3 w-4/12 mt-4 disabled"
                 type="submit"
-                // onClick={handleShow}
               >
                 {loading ? (
                   <Bars
