@@ -189,12 +189,10 @@ const ProofOfFunds = () => {
                 name="when_needed"
                 {...register("when_needed", { required: "Pick a valid date" })}
               />
-              {errors.when_needed && errors.when_needed.type === "pattern" && (
-                <p className="text-red-600">When needed is required</p>
+              {errors.when_needed && errors.when_needed.type === "required" && (
+                <p className="text-red-600">Date is required</p>
               )}
-              {errors.when_needed && errors.when_needed.type === "pattern" && (
-                <p className="text-red-600">{errors.type.message}</p>
-              )}
+              
               <input
                 type="number"
                 className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
@@ -209,7 +207,7 @@ const ProofOfFunds = () => {
                 })}
               />
               {errors.loan_duration &&
-                errors.loan_duration.type === "pattern" && (
+                errors.loan_duration.type === "required" && (
                   <p className="text-red-600">Loan duration is required</p>
                 )}
               {errors.loan_duration &&

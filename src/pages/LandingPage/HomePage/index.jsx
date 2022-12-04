@@ -24,30 +24,16 @@ const HomePage = () => {
           We also offer Federal and Sate civil servants under Remita payroll
           Instant loans! No stress...
         </p>
-        <NavLink
-          to="/get-started"
-          className="slide border-2 px-5 py-4 font-medium text-secondary-dark border-secondary-dark hover:bg-secondary uppercase hover:text-[#fff]"
-        >
-          {/* <button className="uppercase px-5 py-4 mt-5">
-            {loading ? (
-              <Rings
-                height="80"
-                width="80"
-                color="#4fa94d"
-                radius="6"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-                ariaLabel="rings-loading"
-              />
-            ) : (
-              <span className="font-bold text">Apply now &rarr;</span>
-            )}
-          </button> */}
-          <button className="font-bold text uppercase px-5 py-4 mt-5">
-            Apply now &rarr;
-          </button>
-        </NavLink>
+        <span className="w-full">
+          <NavLink
+            to="/get-started"
+            className="w-full slide border-2 px-5 py-4 font-medium text-secondary-dark border-secondary-dark hover:bg-secondary uppercase hover:text-[#fff]"
+          >
+            <button className="font-bold text uppercase px-5 py-4 mt-5">
+              Apply now &rarr;
+            </button>
+          </NavLink>
+        </span>
       </div>
       <div className="max-md:hidden">
         <div className="md:absolute top-1/2 -translate-y-1/2 -right-[15%] circle w-[350px] h-[350px] bg-primary rounded-full"></div>
