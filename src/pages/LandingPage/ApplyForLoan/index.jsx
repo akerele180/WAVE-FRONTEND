@@ -106,9 +106,9 @@ const ApplyForLoan = () => {
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
-                    borderColor: state.isFocused
-                      ? "transparent"
-                      : "transparent",
+                    // borderColor: state.isFocused
+                    //   ? "transparent"
+                    //   : "transparent",
                     borderColor: "#e8833a",
                     borderRadius: 0,
                     padding: "2px 8px",

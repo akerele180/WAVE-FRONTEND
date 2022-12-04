@@ -7,19 +7,26 @@ import ProofOfFundz from "../../../assets/images/WAVE WebApp(11).png";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import { LineWave } from "react-loader-spinner";
+import { Bars } from "react-loader-spinner";
+import { useForm } from "react-hook-form";
 
 const ProofOfFunds = () => {
   const [loading, setLoading] = useState(false);
+  const [emailInfo, setEmailInfo] = useState({});
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(true);
   };
-
+  const {
+    register,
+    formState: { errors },
+    reset,
+    handleSubmit,
+  } = useForm();
   const form = useRef();
-  const sendEmail = (e) => {
+
+  const sendEmail = () => {
     setLoading(true);
-    e.preventDefault();
 
     console.log("object");
     emailjs
@@ -33,14 +40,15 @@ const ProofOfFunds = () => {
         (result) => {
           setLoading(false);
           toast.success("Application Sent");
+          handleShow();
+          reset();
         },
         (error) => {
+          toast.error("Check your internet connection and try again");
+          setLoading(false);
           console.log(error.text);
         }
       );
-
-    console.log("object");
-    console.log(form.current);
   };
 
   return (
@@ -56,67 +64,164 @@ const ProofOfFunds = () => {
         >
           <div>
             <Heading heading={"Apply for Proof of Funds"} />
-            <form ref={form} className="mt-5 md:mt-10" onSubmit={sendEmail}>
+            <form
+              ref={form}
+              className="mt-5 md:mt-10"
+              // onSubmit={handleSubmit(sendEmail)}
+              onSubmit={handleSubmit(sendEmail)}
+            >
               <input
                 type="text"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                placeholder="First Name"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 name="first_name"
+                placeholder="First Name"
+                autoComplete="false"
+                {...register("first_name", {
+                  required: true,
+                  minLength: {
+                    value: 3,
+                    message: "Name must be greater than 3 letters",
+                  },
+                })}
+                aria-invalid={errors.first_name ? "true" : "false"}
               />
+              {errors.first_name && errors.first_name.type === "required" && (
+                <p className="text-red-600">First Name is required</p>
+              )}
+              {errors.first_name && errors.first_name.type === "minLength" && (
+                <p className="text-red-600">
+                  First Name must be greater than 3 letters
+                </p>
+              )}
               <input
                 type="text"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Last Name"
                 name="last_name"
+                {...register("last_name", {
+                  required: true,
+                  minLength: {
+                    value: 3,
+                    message: "Name must be greater than 3 letters",
+                  },
+                })}
               />
+              {errors.last_name && errors.last_name.type === "required" && (
+                <p className="text-red-600">Last Name is required</p>
+              )}
+              {errors.last_name && errors.last_name.type === "minLength" && (
+                <p className="text-red-600">
+                  Last Name must be greater than 3 letters
+                </p>
+              )}
               <input
                 type="email"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Email Address"
                 name="email"
+                {...register("email", {
+                  required: true,
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: "This is not a valid email",
+                  },
+                })}
               />
+              {errors.email && errors.email.type === "required" && (
+                <p className="text-red-600">Email is required.</p>
+              )}
+              {errors.email && errors.email.type === "pattern" && (
+                <p className="text-red-600">{errors.email?.message}</p>
+              )}
               <input
                 type="tel"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Whatsapp Number"
                 name="whatsapp"
+                {...register("whatsapp", {
+                  required: true,
+                  pattern: {
+                    value:
+                      "((^+)(234){1}[0–9]{10})|((^234)[0–9]{10})|((^0)(7|8|9){1}(0|1){1}[0–9]{8})",
+                    message: "Must follow the standard '234**********'",
+                  },
+                })}
               />
+              {errors.whatsapp && errors.whatsapp.type === "required" && (
+                <p className="text-red-600">whatsapp is required.</p>
+              )}
+              {errors.whatsapp && errors.whatsapp.type === "pattern" && (
+                <p className="text-red-600">{errors.whatsapp?.message}</p>
+              )}
               <input
-                type="text"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                type="number"
+                className={`w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary ${
+                  errors.whatsapp && "border-red-600"
+                }`}
                 placeholder="Amount needed?"
                 name="amount_needed"
+                {...register("amount_needed", {
+                  required: true,
+                  pattern: {
+                    value: "^[0-9]",
+                    message: "Amount must be in numbers only",
+                  },
+                })}
               />
+              {errors.whatsapp && errors.whatsapp.type === "required" && (
+                <p className="text-red-600">Amount needed is required.</p>
+              )}
+              {errors.whatsapp && errors.whatsapp.type === "whatsapp" && (
+                <p className="text-red-600">{errors.type.message}</p>
+              )}
               <input
-                type="text"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                type="date"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="How soon do you need the funds?"
                 name="when_needed"
+                {...register("when_needed", { required: "Pick a valid date" })}
               />
+              {errors.when_needed && errors.when_needed.type === "pattern" && (
+                <p className="text-red-600">When needed is required</p>
+              )}
+              {errors.when_needed && errors.when_needed.type === "pattern" && (
+                <p className="text-red-600">{errors.type.message}</p>
+              )}
               <input
-                type="text"
-                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                placeholder="How long do you need the funds for?"
+                type="number"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="How long do you need the funds for (in weeks)?"
                 name="loan_duration"
+                {...register("loan_duration", {
+                  required: true,
+                  pattern: {
+                    value: "^[0-9]",
+                    message: "Duration must be a number",
+                  },
+                })}
               />
-
+              {errors.loan_duration &&
+                errors.loan_duration.type === "pattern" && (
+                  <p className="text-red-600">Loan duration is required</p>
+                )}
+              {errors.loan_duration &&
+                errors.loan_duration.type === "pattern" && (
+                  <p className="text-red-600">{errors.type.message}</p>
+                )}
               <button
-                className="bg-secondary text-center py-3 w-4/12 mt-4"
+                className="bg-secondary text-center py-3 w-4/12 mt-4 disabled"
                 type="submit"
                 // onClick={handleShow}
               >
                 {loading ? (
-                  <LineWave
-                    height="50px"
-                    width="50px"
+                  <Bars
+                    height="24"
+                    width="24"
                     color="#000"
-                    ariaLabel="line-wave"
+                    ariaLabel="bars-loading"
                     wrapperStyle={{}}
-                    wrapperClass="text-center"
+                    wrapperclassName="text-center flex items-center justify-center"
                     visible={true}
-                    firstLineColor=""
-                    middleLineColor=""
-                    lastLineColor=""
                   />
                 ) : (
                   "APPLY"
