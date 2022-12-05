@@ -2,6 +2,7 @@ import React from "react";
 import GetStartedImage from "../../../assets/images/WAVE_WebApp(4).png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Heading } from "../../LandingPage/components/Heading";
 
 const GetStarted = () => {
   return (

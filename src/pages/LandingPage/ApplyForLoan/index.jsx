@@ -37,6 +37,7 @@ const ApplyForLoan = () => {
   const bankNameRef = useRef("");
   const accountNumberRef = useRef("");
   const bvnRef = useRef("");
+  console.log(phoneRef);
 
   const {
     register,
@@ -57,11 +58,11 @@ const ApplyForLoan = () => {
       await dispatch(getOrganizationInitialize(setLoading));
     };
 
-    // fetches();
+    fetches();
   }, []);
 
   useEffect(() => {
-    // setBankListOptions(organization?.banklist);
+    setBankListOptions(organization?.banklist);
   }, [organization]);
 
   const options = bankListOptions?.map((banks) => {
@@ -72,7 +73,8 @@ const ApplyForLoan = () => {
     await dispatch(registerCustomer(setLoading2, phoneNo));
   };
 
-  const handleSubmitt = () => {
+  const handleSubmitt = (data) => {
+    console.log(data);
     dispatch(registerCustomer(setLoading2, phoneRef.current.value));
   };
 
@@ -93,7 +95,6 @@ const ApplyForLoan = () => {
               className="mt-5 md:mt-10"
               onSubmit={
                 handleSubmit(handleSubmitt)
-
                 // handleCustomerApplication(phoneRef.current.value);
                 // dispatch(registerCustomer(setLoading2, phoneRef.current.value))
               }
@@ -106,15 +107,23 @@ const ApplyForLoan = () => {
                 name="phone_number"
                 {...register("phone_number", {
                   required: true,
+                  minLength: {
+                    value: 11,
+                    message: "Not up to 11 digits.",
+                  },
                   maxLength: {
                     value: 11,
-                    message: "Not up to 11 digits yet.",
+                    message: "Can't be more than 11 digits.",
                   },
                 })}
               />{" "}
               {errors.phone_number &&
                 errors.phone_number.type === "required" && (
                   <p className="text-red-600">Phone Number is required</p>
+                )}
+              {errors.phone_number &&
+                errors.phone_number.type === "minLength" && (
+                  <p className="text-red-600">{errors.phone_number.message}</p>
                 )}
               {errors.phone_number &&
                 errors.phone_number.type === "maxLength" && (
@@ -143,7 +152,7 @@ const ApplyForLoan = () => {
                 className="focus:border-primary placeholder:text-grey placeholder:text-sm w-full fw-bold md:w-8/12 block text-sm mt-2"
                 name="bank_name"
                 {...register("bank_name", {
-                  required: true,
+                  required: false,
                 })}
               />
               {errors.bank_name && errors.bank_name.type === "required" && (
@@ -157,15 +166,25 @@ const ApplyForLoan = () => {
                 name="salary_account_number"
                 {...register("salary_account_number", {
                   required: true,
-                  maxLength: {
+                  minLength: {
                     value: 10,
                     message: "Not up to 10 digits yet.",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "Can't be more than 10 digits.",
                   },
                 })}
               />
               {errors.salary_account_number &&
                 errors.salary_account_number.type === "required" && (
                   <p className="text-red-600">Account number is required</p>
+                )}
+              {errors.salary_account_number &&
+                errors.salary_account_number.type === "minLength" && (
+                  <p className="text-red-600">
+                    {errors.salary_account_number.message}
+                  </p>
                 )}
               {errors.salary_account_number &&
                 errors.salary_account_number.type === "maxLength" && (
@@ -183,6 +202,10 @@ const ApplyForLoan = () => {
                   required: true,
                   maxLength: {
                     value: 10,
+                    message: "Can't be more than 11 digits.",
+                  },
+                  minLength: {
+                    value: 10,
                     message: "Not up to 11 digits yet.",
                   },
                 })}
@@ -191,6 +214,9 @@ const ApplyForLoan = () => {
                 <p className="text-red-600">BVN is required</p>
               )}
               {errors.bvn && errors.bvn.type === "maxLength" && (
+                <p className="text-red-600">{errors.bvn.message}</p>
+              )}
+              {errors.bvn && errors.bvn.type === "minLength" && (
                 <p className="text-red-600">{errors.bvn.message}</p>
               )}
               {/* terms and condition here */}
@@ -233,7 +259,7 @@ const ApplyForLoan = () => {
 
           <button
             type="button"
-            className="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            className="hidden px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
