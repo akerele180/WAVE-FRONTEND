@@ -8,13 +8,13 @@ function App() {
     <BrowserRouter>
       <Suspense
         fallback={
-          <div className="h-full flex justify-center items-center">
-            <img src={WaveLogo} alt="" className="" />
+          <div className="h-screen w-screen flex items-center justify-center">
+            <img src={WaveLogo} alt="" className="w-1/12" />
           </div>
         }
       >
         {/* <ToastContainer> */}
-          <AppRoutes />
+        <AppRoutes />
         {/* </ToastContainer> */}
       </Suspense>
     </BrowserRouter>
