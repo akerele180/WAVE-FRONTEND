@@ -17,20 +17,16 @@ const AboutUsPage = () => {
       <div>
         <Heading heading={"About Us"} />
         <div className="flex max-lg:flex-col-reverse">
-          <Fade left>
-            <p className="pb-3 pt-4 md:pt-10 max-md:mt-3">
-              Wave is a Fintech company that offers loans, target savings and
-              Investments. <br />
-              We are here to cushion all your financial worries by providing
-              ease, access, flexibilty and convenience.
-            </p>
-          </Fade>
+          <p className="pb-3 pt-4 md:pt-10 max-md:mt-3">
+            Wave is a Fintech company that offers loans, target savings and
+            Investments. <br />
+            We are here to cushion all your financial worries by providing ease,
+            access, flexibilty and convenience.
+          </p>
 
-          <Fade right>
-            <div className="basis-3/4">
-              <img src={AboutImage} alt="" />
-            </div>
-          </Fade>
+          <div className="basis-3/4">
+            <img src={AboutImage} alt="" />
+          </div>
         </div>
       </div>
     </motion.section>

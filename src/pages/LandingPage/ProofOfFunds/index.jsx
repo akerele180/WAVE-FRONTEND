@@ -3,7 +3,6 @@ import emailjs from "@emailjs/browser";
 import { Heading } from "../components/Heading";
 import ThankYou from "../../../assets/images/WAVE_WebApp(10).png";
 import ProofOfFundz from "../../../assets/images/WAVE_WebApp(11).png";
-
 import { BsSuitHeartFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";

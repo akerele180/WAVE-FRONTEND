@@ -4,8 +4,7 @@ import ProductImage from "../../../assets/images/WAVE_WebApp(3).png";
 import ThankYou from "../../../assets/images/WAVE_WebApp(5).png";
 import { motion } from "framer-motion";
 import { BsSuitHeartFill } from "react-icons/bs";
-import { useForm } from "react-hook-form";
-import Fade from "react-reveal/Fade";
+import { useForm } from "react-hook-form"; 
 
 const ContactUsPage = () => {
   const [show, setShow] = useState(false);
@@ -30,7 +29,7 @@ const ContactUsPage = () => {
           exit={{ opacity: 0 }}
           className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
         >
-          <Fade left>
+          
             <div>
               <Heading heading={"Contact Us"} />
               <form
@@ -145,13 +144,13 @@ const ContactUsPage = () => {
                 </button>
               </form>
             </div>
-          </Fade>
-          <Fade right>
+          
+          
             <div className="max-md:hidden">
               <img src={ProductImage} alt="" />
             </div>
-          </Fade>
-          <Fade bottom>
+          
+          
             <nav className="col-span-2 max-md:hidden">
               <ul className="flex items-center justify-center">
                 <li className="px-4 cursor-pointer">Twitter</li>
@@ -162,7 +161,7 @@ const ContactUsPage = () => {
                 <li className="px-4 cursor-pointer">Email Info</li>
               </ul>
             </nav>
-          </Fade>
+          
         </motion.section>
       )}
     </>
