@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { Fade } from "react-reveal";
 import AboutImage from "../../../assets/images/WAVE WebApp(2).png";
 import { Heading } from "../components/Heading";
 import "./styled.css";
@@ -16,16 +17,20 @@ const AboutUsPage = () => {
       <div>
         <Heading heading={"About Us"} />
         <div className="flex max-lg:flex-col-reverse">
-          <p className="pb-3 pt-4 md:pt-10 max-md:mt-3">
-            Wave is a Fintech company that offers loans, target savings and
-            Investments. <br />
-            We are here to cushion all your financial worries by providing ease,
-            access, flexibilty and convenience.
-          </p>
+          <Fade left>
+            <p className="pb-3 pt-4 md:pt-10 max-md:mt-3">
+              Wave is a Fintech company that offers loans, target savings and
+              Investments. <br />
+              We are here to cushion all your financial worries by providing
+              ease, access, flexibilty and convenience.
+            </p>
+          </Fade>
 
-          <div className="basis-3/4">
-            <img src={AboutImage} alt="" />
-          </div>
+          <Fade right>
+            <div className="basis-3/4">
+              <img src={AboutImage} alt="" />
+            </div>
+          </Fade>
         </div>
       </div>
     </motion.section>
