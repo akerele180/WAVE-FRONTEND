@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Heading } from "../components/Heading";
-import ThankYou from "../../../assets/images/WAVE WebApp(10).png";
-import ProofOfFundz from "../../../assets/images/WAVE WebApp(11).png";
+import ThankYou from "../../../assets/images/WAVE_WebApp(10).png";
+import ProofOfFundz from "../../../assets/images/WAVE_WebApp(11).png";
 
 import { BsSuitHeartFill } from "react-icons/bs";
 import { motion } from "framer-motion";
@@ -27,7 +27,7 @@ const ProofOfFunds = () => {
 
   const sendEmail = () => {
     setLoading(true);
- 
+
     emailjs
       .sendForm(
         "service_yc9jwse",
@@ -171,12 +171,14 @@ const ProofOfFunds = () => {
                   },
                 })}
               />
-              {errors.amount_needed && errors.amount_needed.type === "required" && (
-                <p className="text-red-600">Amount needed is required.</p>
-              )}
-              {errors.amount_needed && errors.amount_needed.type === "pattern" && (
-                <p className="text-red-600">{errors.amount_needed.message}</p>
-              )}
+              {errors.amount_needed &&
+                errors.amount_needed.type === "required" && (
+                  <p className="text-red-600">Amount needed is required.</p>
+                )}
+              {errors.amount_needed &&
+                errors.amount_needed.type === "pattern" && (
+                  <p className="text-red-600">{errors.amount_needed.message}</p>
+                )}
               <input
                 type="date"
                 className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"

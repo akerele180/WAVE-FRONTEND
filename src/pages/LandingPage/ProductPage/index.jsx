@@ -1,6 +1,6 @@
 import React from "react";
 import { Heading } from "../components/Heading";
-import ProductImage from "../../../assets/images/WAVE WebApp.png";
+import ProductImage from "../../../assets/images/WAVE_WebApp.png";
 import { motion } from "framer-motion";
 import { Fade } from "react-reveal";
 

@@ -1,15 +1,15 @@
-import React from "react";
+import React, { lazy } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "../pages/LandingPage";
-import HomePage from "../pages/LandingPage/HomePage";
-import ContactUsPage from "../pages/LandingPage/ContactUsPage";
-import AboutUsPage from "../pages/LandingPage/AboutUsPage";
-import ProductPage from "../pages/LandingPage/ProductPage";
-import GetStarted from "../pages/LandingPage/GetStarted";
-import POF from "../pages/LandingPage/ProofOfFunds";
-import Error404 from "../pages/ErrorPage";
-import ApplyForLoan from "../pages/LandingPage/ApplyForLoan";
+const LandingPage = lazy(() => import("../pages/LandingPage"));
+const HomePage = lazy(() => import("../pages/LandingPage/HomePage"));
+const ContactUsPage = lazy(() => import("../pages/LandingPage/ContactUsPage"));
+const AboutUsPage = lazy(() => import("../pages/LandingPage/AboutUsPage"));
+const ProductPage = lazy(() => import("../pages/LandingPage/ProductPage"));
+const GetStarted = lazy(() => import("../pages/LandingPage/GetStarted"));
+const POF = lazy(() => import("../pages/LandingPage/ProofOfFunds"));
+const Error404 = lazy(() => import("../pages/ErrorPage"));
+const ApplyForLoan = lazy(() => import("../pages/LandingPage/ApplyForLoan"));
 import WaveModal from "../components/Modal";
 
 const AppRoutes = () => {

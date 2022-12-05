@@ -1,6 +1,6 @@
 import React from "react";
 import { Heading } from "../components/Heading";
-import GetStartedImage from "../../../assets/images/WAVE WebApp(4).png";
+import GetStartedImage from "../../../assets/images/WAVE_WebApp(4).png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Fade } from "react-reveal";

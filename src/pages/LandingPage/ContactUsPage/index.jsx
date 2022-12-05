@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Heading } from "../components/Heading";
-import ProductImage from "../../../assets/images/WAVE WebApp(3).png";
-import ThankYou from "../../../assets/images/WAVE WebApp(5).png";
+import ProductImage from "../../../assets/images/WAVE_WebApp(3).png";
+import ThankYou from "../../../assets/images/WAVE_WebApp(5).png";
 import { motion } from "framer-motion";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Heading } from "../components/Heading";
-import ProductImage from "../../../assets/images/WAVE WebApp(1).png";
-import ThankYou from "../../../assets/images/WAVE WebApp(9).png";
+import ProductImage from "../../../assets/images/WAVE_WebApp(1).png";
+import ThankYou from "../../../assets/images/WAVE_WebApp(9).png";
 import { motion } from "framer-motion";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
