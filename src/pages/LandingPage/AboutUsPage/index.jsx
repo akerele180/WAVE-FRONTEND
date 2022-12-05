@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import React from "react";
-// import { Fade } from "react-reveal";
 import AboutImage from "../../../assets/images/WAVE_WebApp(2).png";
 import { Heading } from "../components/Heading";
 import "./styled.css";
