@@ -37,6 +37,7 @@ const ApplyForLoan = () => {
   const bankNameRef = useRef("");
   const accountNumberRef = useRef("");
   const bvnRef = useRef("");
+  const checkieRef = useRef(null);
   console.log(phoneRef);
 
   const {
@@ -75,7 +76,7 @@ const ApplyForLoan = () => {
 
   const handleSubmitt = (data) => {
     console.log(data);
-    dispatch(registerCustomer(setLoading2, phoneRef.current.value));
+    dispatch(registerCustomer(setLoading2, data.phone_number));
   };
 
   return (
@@ -95,6 +96,7 @@ const ApplyForLoan = () => {
               className="mt-5 md:mt-10"
               onSubmit={
                 handleSubmit(handleSubmitt)
+
                 // handleCustomerApplication(phoneRef.current.value);
                 // dispatch(registerCustomer(setLoading2, phoneRef.current.value))
               }
@@ -220,14 +222,17 @@ const ApplyForLoan = () => {
                 <p className="text-red-600">{errors.bvn.message}</p>
               )}
               {/* terms and condition here */}
-              <div className="flex gap-2">
+              <div className="flex items-start gap-2 pt-2">
                 <input
                   type="checkbox"
                   name="consent"
                   id="consent"
-                  className="accent-orange"
+                  className="accent-orange text-white"
+                  ref={checkieRef}
+                  onchange={() => console.log(checkieRef.current)}
+                  {...register("checkie")}
                 />
-                <label htmlFor="checkbox" className="block py-2">
+                <label htmlFor="checkbox" className="block">
                   <em>
                     <span className="text-orange">&#9888;</span> Please, read
                     the{" "}
