@@ -7,28 +7,14 @@ import { BsSuitHeartFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import {
+  customerConsent,
   getOrganizationInitialize,
   registerCustomer,
 } from "../../../redux/actions";
-import WaveModal from "../../../components/Modal";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const ApplyForLoan = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [bankListOptions, setBankListOptions] = useState([]);
@@ -38,7 +24,6 @@ const ApplyForLoan = () => {
   const accountNumberRef = useRef("");
   const bvnRef = useRef("");
   const checkieRef = useRef(null);
-  console.log(phoneRef);
 
   const {
     register,
@@ -46,14 +31,13 @@ const ApplyForLoan = () => {
     reset,
     handleSubmit,
   } = useForm();
-  const form = useRef();
 
   const dispatch = useDispatch();
   const { organization } = useSelector((state) => state.organization);
   const { registeredCustomer } = useSelector(
     (state) => state.registeredCustomer
   );
-  console.log(registeredCustomer);
+
   useEffect(() => {
     const fetches = async () => {
       await dispatch(getOrganizationInitialize(setLoading));
@@ -70,12 +54,7 @@ const ApplyForLoan = () => {
     return { label: banks.bankName, value: banks._id };
   });
 
-  const handleCustomerApplication = async (phoneNo) => {
-    await dispatch(registerCustomer(setLoading2, phoneNo));
-  };
-
   const handleSubmitt = (data) => {
-    console.log(data);
     dispatch(registerCustomer(setLoading2, data.phone_number));
   };
 
@@ -229,7 +208,6 @@ const ApplyForLoan = () => {
                   id="consent"
                   className="accent-orange text-white"
                   ref={checkieRef}
-                  onchange={() => console.log(checkieRef.current)}
                   {...register("checkie")}
                 />
                 <label htmlFor="checkbox" className="block">
@@ -261,17 +239,13 @@ const ApplyForLoan = () => {
           <div className="max-md:hidden">
             <img src={ProductImage} alt="" />
           </div>
-
-          <button
+          {/* <button
             type="button"
-            className="hidden px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            className="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            onClick={() => setShowConsentModal(true)}
           >
             Launch demo modal
-          </button>
-
-          {true && <WaveConsentModal />}
+          </button> */}
           {/* Footer nav for social links */}
           <nav className="col-span-2 max-md:hidden">
             <ul className="flex items-center justify-center">
@@ -290,10 +264,37 @@ const ApplyForLoan = () => {
     </>
   );
 };
-
 export default ApplyForLoan;
 
 const ApplyForLoanResponse = () => {
+  const [loading3, setLoading3] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { registeredCustomer } = useSelector(
+    (state) => state.registeredCustomer
+  );
+
+  const handleCustomerConsent = async () => {
+    await dispatch(
+      customerConsent(
+        setLoading3,
+        registeredCustomer?.data._id,
+        registeredCustomer?.data?.token
+      )
+    );
+  };
+  useEffect(() => {
+    handleCustomerConsent();
+  }, []);
+
+  useEffect(() => {
+    if (loading3) {
+      navigate("/");
+    }
+  }, [loading3]);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -328,85 +329,156 @@ const ApplyForLoanResponse = () => {
   );
 };
 
-const WaveConsentModal = () => {
-  return (
-    <div
-      className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog relative w-auto pointer-events-none">
-        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-          <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-            <h5
-              className="text-xl font-medium leading-normal text-gray-800"
-              id="exampleModalLabel"
-            >
-              Consent
-            </h5>
-            <button
-              type="button"
-              className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div className="modal-body relative p-4 text-center font-light">
-            I hereby authorize{" "}
-            <strong>Waveafricabusinessconsultinglimited </strong>to obtain my
-            personal dara from 3rd parties, deduct loan settlements from my
-            salary and debit bank accounts linked to my identity for repayments.
-            I acknowledge that all information provided is accurate and
-            understand that once approved, this application is irreversible.
-          </div>
-          <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-            <button
-              type="button"
-              className="px-6
-          py-2.5
-          bg-purple-600
-          text-white
-          font-medium
-          text-xs
-          leading-tight  
-          rounded
-          shadow-md
-          hover:bg-purple-700 hover:shadow-lg
-          focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0
-          active:bg-purple-800 active:shadow-lg
-          transition
-          duration-150
-          ease-in-out"
-              data-bs-dismiss="modal"
-            >
-              Decline
-            </button>
-            <button
-              type="button"
-              className="px-6
-      py-2.5
-      bg-blue-600
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      rounded
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out
-      ml-1"
-            >
-              Consent
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+// const WaveConsentModal = (props) => {
+//   return (
+//     <div
+//       className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+//       id="exampleModal"
+//       tabindex="-1"
+//     >
+//       <div className="modal-dialog relative w-auto pointer-events-none">
+//         <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+//           <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+//             <h5
+//               className="text-xl font-medium leading-normal text-gray-800"
+//               id="exampleModalLabel"
+//             >
+//               Consent
+//             </h5>
+//             <button
+//               type="button"
+//               className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+//               data-bs-dismiss="modal"
+//               aria-label="Close"
+//             ></button>
+//           </div>
+//           <div className="modal-body relative p-4 text-center font-light">
+//             I hereby authorize{" "}
+//             <strong>Waveafricabusinessconsultinglimited </strong>to obtain my
+//             personal dara from 3rd parties, deduct loan settlements from my
+//             salary and debit bank accounts linked to my identity for repayments.
+//             I acknowledge that all information provided is accurate and
+//             understand that once approved, this application is irreversible.
+//           </div>
+//           <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+//             <button
+//               type="button"
+//               className="px-6
+//           py-2.5
+//           bg-purple-600
+//           text-white
+//           font-medium
+//           text-xs
+//           leading-tight
+//           rounded
+//           shadow-md
+//           hover:bg-purple-700 hover:shadow-lg
+//           focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0
+//           active:bg-purple-800 active:shadow-lg
+//           transition
+//           duration-150
+//           ease-in-out"
+//               data-bs-dismiss="modal"
+//             >
+//               Decline
+//             </button>
+//             <button
+//               type="button"
+//               className="px-6
+//       py-2.5
+//       bg-blue-600
+//       text-white
+//       font-medium
+//       text-xs
+//       leading-tight
+//       rounded
+//       shadow-md
+//       hover:bg-blue-700 hover:shadow-lg
+//       focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+//       active:bg-blue-800 active:shadow-lg
+//       transition
+//       duration-150
+//       ease-in-out
+//       ml-1"
+//             >
+//               Consent
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// const WaveConsentModal = () => {
+//   const [showModal, setShowModal] = useState(false);
+//   return (
+//     <>
+//       <button
+//         className="bg-blue-200 text-black active:bg-blue-500
+//       font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+//         type="button"
+//         onClick={() => setShowModal(true)}
+//       >
+//         Fill Details
+//       </button>
+//       {showModal ? (
+//         <>
+//           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+//             <div className="relative w-auto my-6 mx-auto max-w-3xl">
+//               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+//                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
+//                   <h3 className="text-3xl font=semibold">General Info</h3>
+//                   <button
+//                     className="bg-transparent border-0 text-black float-right"
+//                     onClick={() => setShowModal(false)}
+//                   >
+//                     <span className="text-black opacity-7 h-6 w-6 text-xl block bg-gray-400 py-0 rounded-full">
+//                       x
+//                     </span>
+//                   </button>
+//                 </div>
+//                 <div className="relative p-6 flex-auto">
+//                   <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full">
+//                     <label className="block text-black text-sm font-bold mb-1">
+//                       First Name
+//                     </label>
+//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+//                     <label className="block text-black text-sm font-bold mb-1">
+//                       Last Name
+//                     </label>
+//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+//                     <label className="block text-black text-sm font-bold mb-1">
+//                       Address
+//                     </label>
+//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+//                     <label className="block text-black text-sm font-bold mb-1">
+//                       City
+//                     </label>
+//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+//                   </form>
+//                 </div>
+//                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+//                   <button
+//                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+//                     type="button"
+//                     onClick={() => setShowModal(false)}
+//                   >
+//                     Close
+//                   </button>
+//                   <button
+//                     className="text-white bg-yellow-500 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+//                     type="button"
+//                     onClick={() => setShowModal(false)}
+//                   >
+//                     Submit
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </>
+//       ) : null}
+//     </>
+//   );
+// };

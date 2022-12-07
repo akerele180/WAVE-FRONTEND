@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
 import { REGISTER_CUSTOMER } from "../actionTypes";
 // import { GETRequest, sendGETRequest } from "../../utils/hooks";
@@ -92,22 +93,19 @@ export const registerCustomer = (setLoading2, phonenumber) => {
   };
 };
 
-export const customerConsent = (setLoading3, id) => {
+export const customerConsent = (setLoading3, id, bearerToken) => {
   return async (dispatch) => {
-    setLoading3(true);
     try {
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append(
-        "x-tag",
-        "OWU5MWQ5N2U1YzgzZGFhZWM0ZTc4NzMyYzgwOGMxZTY1MTc1N2ExNGJhOGE2OTk1NTNlODk1M2IzZjcxYzgzYS8vLy8vLzE2NTYwMTIxNzQ4MDI="
-      );
-
-      var raw = '{\n    "consent": "yes"\n}';
+      var raw = '{\n "consent": "yes"\n}';
 
       var requestOptions = {
         method: "POST",
-        headers: myHeaders,
+        headers: new Headers({
+          Authorization: `Bearer ${bearerToken}`,
+          "x-tag":
+            "OWU5MWQ5N2U1YzgzZGFhZWM0ZTc4NzMyYzgwOGMxZTY1MTc1N2ExNGJhOGE2OTk1NTNlODk1M2IzZjcxYzgzYS8vLy8vLzE2NTYwMTIxNzQ4MDI=",
+          "Content-Type": "application/json",
+        }),
         body: raw,
         redirect: "follow",
       };
@@ -118,7 +116,6 @@ export const customerConsent = (setLoading3, id) => {
       );
 
       if (res.ok) {
-        setLoading3(false);
         const data = await res.json();
         toast.success("🦄 Consent Saved", {
           position: "top-center",
@@ -133,7 +130,15 @@ export const customerConsent = (setLoading3, id) => {
           payload: data,
         });
       } else {
-        setLoading3(false);
+        toast.error("You are not eligible for loan at the moment", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          theme: "colored",
+          transition: Slide,
+        });
+        setLoading3(true);
+        <Navigate to="/" replace={true} />;
         return;
       }
     } catch (error) {
