@@ -182,11 +182,11 @@ const ApplyForLoan = () => {
                 {...register("bvn", {
                   required: true,
                   maxLength: {
-                    value: 10,
+                    value: 11,
                     message: "Can't be more than 11 digits.",
                   },
                   minLength: {
-                    value: 10,
+                    value: 11,
                     message: "Not up to 11 digits yet.",
                   },
                 })}
