@@ -12,18 +12,20 @@ import {
   registerCustomer,
 } from "../../../redux/actions";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const ApplyForLoan = () => {
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [bankListOptions, setBankListOptions] = useState([]);
-
+  const [handleCheck, setHandleCheck] = useState(false);
   const phoneRef = useRef("");
   const bankNameRef = useRef("");
   const accountNumberRef = useRef("");
   const bvnRef = useRef("");
   const checkieRef = useRef(null);
+
+  const location = useLocation();
 
   const {
     register,
@@ -70,7 +72,7 @@ const ApplyForLoan = () => {
           className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
         >
           <div>
-            <Heading heading={"Apply for Quick Loan"} />
+            <Heading heading={location?.state} />
             <form
               className="mt-5 md:mt-10"
               onSubmit={
@@ -182,7 +184,7 @@ const ApplyForLoan = () => {
                 {...register("bvn", {
                   required: true,
                   maxLength: {
-                    value: 12,
+                    value: 11,
                     message: "Can't be more than 11 digits.",
                   },
                   minLength: {
@@ -206,11 +208,18 @@ const ApplyForLoan = () => {
                   type="checkbox"
                   name="consent"
                   id="consent"
-                  className="accent-orange text-white"
+                  defaultChecked={handleCheck}
+                  className="accent-orange text-white h-[1.2rem] w-[1.2rem] cursor-pointer"
                   ref={checkieRef}
                   {...register("checkie")}
                 />
-                <label htmlFor="checkbox" className="block">
+                <label
+                  htmlFor="consent"
+                  onClick={() => {
+                    setHandleCheck((handleCheck) => !handleCheck);
+                  }}
+                  className="cursor-pointer block"
+                >
                   <em>
                     <span className="text-orange">&#9888;</span> Please, read
                     the{" "}
@@ -292,6 +301,7 @@ const ApplyForLoanResponse = () => {
   useEffect(() => {
     if (loading3) {
       navigate("/");
+      window.location.reload();
     }
   }, [loading3]);
 

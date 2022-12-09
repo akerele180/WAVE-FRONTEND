@@ -97,7 +97,6 @@ export const customerConsent = (setLoading3, id, bearerToken) => {
   return async (dispatch) => {
     try {
       var raw = '{\n "consent": "yes"\n}';
-
       var requestOptions = {
         method: "POST",
         headers: new Headers({
@@ -130,6 +129,7 @@ export const customerConsent = (setLoading3, id, bearerToken) => {
           payload: data,
         });
       } else {
+        setLoading3(true);
         toast.error("You are not eligible for loan at the moment", {
           position: "top-center",
           autoClose: 3000,
@@ -137,9 +137,6 @@ export const customerConsent = (setLoading3, id, bearerToken) => {
           theme: "colored",
           transition: Slide,
         });
-        setLoading3(true);
-        <Navigate to="/" replace={true} />;
-        return;
       }
     } catch (error) {
       setLoading3(false);
