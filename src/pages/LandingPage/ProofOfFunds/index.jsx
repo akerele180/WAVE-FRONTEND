@@ -188,7 +188,6 @@ const ProofOfFunds = () => {
               {errors.when_needed && errors.when_needed.type === "required" && (
                 <p className="text-red-600">Date is required</p>
               )}
-
               <input
                 type="number"
                 className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
@@ -210,6 +209,13 @@ const ProofOfFunds = () => {
                 errors.loan_duration.type === "pattern" && (
                   <p className="text-red-600">{errors.type.message}</p>
                 )}
+              <input
+                type="text"
+                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="Referral Name"
+                name="referral_name"
+                {...register("referral")}
+              />
               <button
                 className="bg-secondary flex items-center justify-center text-center py-3 w-4/12 mt-4 disabled"
                 type="submit"

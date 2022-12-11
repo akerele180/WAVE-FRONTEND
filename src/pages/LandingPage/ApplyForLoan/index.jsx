@@ -50,6 +50,10 @@ const ApplyForLoan = () => {
 
   useEffect(() => {
     setBankListOptions(organization?.banklist);
+
+    return () => {
+      console.log("fetching done");
+    };
   }, [organization]);
 
   const options = bankListOptions?.map((banks) => {
