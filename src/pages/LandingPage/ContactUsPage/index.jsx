@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Heading } from "../components/Heading";
 import ProductImage from "../../../assets/images/WAVE_WebApp(3).png";
 import ThankYou from "../../../assets/images/WAVE_WebApp(5).png";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { BsSuitHeartFill } from "react-icons/bs";
-import { useForm } from "react-hook-form"; 
+import { useForm } from "react-hook-form";
+import { Bars } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 const ContactUsPage = () => {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleShow = () => {
     setShow(true);
   };
@@ -17,6 +21,44 @@ const ContactUsPage = () => {
     reset,
     handleSubmit,
   } = useForm();
+
+  const handleFormSubmit = (data) => {
+    console.log(data);
+  };
+  const form = useRef();
+
+  const sendEmail = () => {
+    setLoading(true);
+
+    emailjs
+      .sendForm(
+        "service_80zpkdn",
+        "template_u8dkh78",
+        form.current,
+        "AJ02V-9d8EP0SzfAW"
+      )
+      .then(
+        (result) => {
+          setLoading(false);
+          toast.success("Message Sent", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          handleShow();
+          reset();
+        },
+        (error) => {
+          toast.error("Check your internet connection and try again");
+          setLoading(false);
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
     <>
@@ -29,139 +71,141 @@ const ContactUsPage = () => {
           exit={{ opacity: 0 }}
           className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
         >
-          
-            <div>
-              <Heading heading={"Contact Us"} />
-              <form
-                className="mt-5 md:mt-10"
-                onSubmit={handleSubmit((data) => {
-                  console.log(data);
-                  reset();
+          <div>
+            <Heading heading={"Contact Us"} />
+            <form
+              className="mt-5 md:mt-10"
+              onSubmit={handleSubmit(sendEmail)}
+              ref={form}
+            >
+              <input
+                type="text"
+                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="First Name"
+                name="first_name"
+                {...register("first_name", {
+                  required: true,
+                  minLength: {
+                    value: 3,
+                    message: "First name must be greater than 3 letters",
+                  },
                 })}
+                aria-invalid={errors.first_name ? "true" : "false"}
+              />
+              {errors.first_name && errors.first_name.type === "required" && (
+                <p className="text-red-600">First Name is required</p>
+              )}
+              {errors.first_name && errors.first_name.type === "minLength" && (
+                <p className="text-red-600">{errors.first_name.message}</p>
+              )}
+              <input
+                type="text"
+                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="Surname"
+                name="surname"
+                {...register("surname", {
+                  required: true,
+                  minLength: {
+                    value: 3,
+                    message: "First name must be greater than 3 letters",
+                  },
+                })}
+                aria-invalid={errors.surname ? "true" : "false"}
+              />
+              {errors.surname && errors.surname.type === "required" && (
+                <p className="text-red-600">Surname is required</p>
+              )}
+              {errors.surname && errors.surname.type === "minLength" && (
+                <p className="text-red-600">{errors.surname.message}</p>
+              )}
+              <input
+                type="email"
+                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="Email Address"
+                name="email"
+                {...register("email", {
+                  required: true,
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: "This is not a valid email",
+                  },
+                })}
+              />
+              {errors.email && errors.email.type === "required" && (
+                <p className="text-red-600">Email is required.</p>
+              )}
+              {errors.email && errors.email.type === "pattern" && (
+                <p className="text-red-600">{errors.email?.message}</p>
+              )}
+              <input
+                type="tel"
+                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                placeholder="Phone Number"
+                name="phone_number"
+                {...register("phone_number", {
+                  required: true,
+                  pattern: {
+                    value:
+                      "((^+)(234){1}[0–9]{10})|((^234)[0–9]{10})|((^0)(7|8|9){1}(0|1){1}[0–9]{8})",
+                    message: "Must follow the standard '234**********'",
+                  },
+                })}
+              />
+              {errors.phone_number &&
+                errors.phone_number.type === "required" && (
+                  <p className="text-red-600">Phone Number is required.</p>
+                )}
+              {errors.phone_number &&
+                errors.phone_number.type === "pattern" && (
+                  <p className="text-red-600">{errors.phone_number?.message}</p>
+                )}
+              <textarea
+                name="message"
+                id=""
+                cols="30"
+                rows="5"
+                placeholder="Enter your message"
+                className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                {...register("message", { required: true })}
+              />
+              {errors.message && errors.message.type === "required" && (
+                <p className="text-red-600">Please type in your message.</p>
+              )}
+              <button
+                className="bg-secondary flex items-center justify-center text-center py-3 w-4/12 mt-4 disabled"
+                type="submit"
               >
-                <input
-                  type="text"
-                  className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                  placeholder="First Name"
-                  name="first_name"
-                  {...register("first_name", {
-                    required: true,
-                    minLength: {
-                      value: 3,
-                      message: "First name must be greater than 3 letters",
-                    },
-                  })}
-                  aria-invalid={errors.first_name ? "true" : "false"}
-                />
-                {errors.first_name && errors.first_name.type === "required" && (
-                  <p className="text-red-600">First Name is required</p>
+                {loading ? (
+                  <Bars
+                    height="24"
+                    width="24"
+                    color="#000"
+                    ariaLabel="bars-loading"
+                    wrapperStyle={{}}
+                    wrapperclassName="text-center flex items-center justify-center"
+                    visible={true}
+                  />
+                ) : (
+                  "SEND"
                 )}
-                {errors.first_name &&
-                  errors.first_name.type === "minLength" && (
-                    <p className="text-red-600">{errors.first_name.message}</p>
-                  )}
-                <input
-                  type="text"
-                  className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                  placeholder="Surname"
-                  name="surname"
-                  {...register("surname", {
-                    required: true,
-                    minLength: {
-                      value: 3,
-                      message: "First name must be greater than 3 letters",
-                    },
-                  })}
-                  aria-invalid={errors.surname ? "true" : "false"}
-                />
-                {errors.surname && errors.surname.type === "required" && (
-                  <p className="text-red-600">Surname is required</p>
-                )}
-                {errors.surname && errors.surname.type === "minLength" && (
-                  <p className="text-red-600">{errors.surname.message}</p>
-                )}
-                <input
-                  type="email"
-                  className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                  placeholder="Email Address"
-                  name="email"
-                  {...register("email", {
-                    required: true,
-                    pattern: {
-                      value: /^\S+@\S+$/i,
-                      message: "This is not a valid email",
-                    },
-                  })}
-                />
-                {errors.email && errors.email.type === "required" && (
-                  <p className="text-red-600">Email is required.</p>
-                )}
-                {errors.email && errors.email.type === "pattern" && (
-                  <p className="text-red-600">{errors.email?.message}</p>
-                )}
-                <input
-                  type="tel"
-                  className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                  placeholder="Phone Number"
-                  name="phone_number"
-                  {...register("phone_number", {
-                    required: true,
-                    pattern: {
-                      value:
-                        "((^+)(234){1}[0–9]{10})|((^234)[0–9]{10})|((^0)(7|8|9){1}(0|1){1}[0–9]{8})",
-                      message: "Must follow the standard '234**********'",
-                    },
-                  })}
-                />
-                {errors.phone_number &&
-                  errors.phone_number.type === "required" && (
-                    <p className="text-red-600">Phone Number is required.</p>
-                  )}
-                {errors.phone_number &&
-                  errors.phone_number.type === "pattern" && (
-                    <p className="text-red-600">
-                      {errors.phone_number?.message}
-                    </p>
-                  )}
-                <textarea
-                  name="message"
-                  id=""
-                  cols="30"
-                  rows="5"
-                  placeholder="Enter your message"
-                  className="w-full md:w-8/12 block border border-orange my-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                  {...register("message", { required: true })}
-                />
-                {errors.message && errors.message.type === "required" && (
-                  <p className="text-red-600">Please type in your message.</p>
-                )}
-                <button
-                  className="bg-secondary py-3 w-4/12 mt-4"
-                  type="submit"
-                  // onClick={handleShow}
-                >
-                  SEND
-                </button>
-              </form>
-            </div>
-          
-          
-            <div className="max-md:hidden">
-              <img src={ProductImage} alt="" />
-            </div>
-          
-          
-            <nav className="col-span-2 max-md:hidden">
-              <ul className="flex items-center justify-center">
-                <li className="px-4 cursor-pointer">Twitter</li>
-                <li className="px-4 cursor-pointer">Facebook</li>
-                <li className="px-4 cursor-pointer">LinkedIn</li>
-                <li className="px-4 cursor-pointer">Instagram</li>
-                <li className="px-4 cursor-pointer">Phone Number</li>
-                <li className="px-4 cursor-pointer">Email Info</li>
-              </ul>
-            </nav>
-          
+              </button>
+            </form>
+          </div>
+
+          <div className="max-md:hidden">
+            <img src={ProductImage} alt="" />
+          </div>
+
+          <nav className="col-span-2 max-md:hidden">
+            <ul className="flex items-center justify-center">
+              <li className="px-4 cursor-pointer">Twitter</li>
+              <li className="px-4 cursor-pointer">Facebook</li>
+              <li className="px-4 cursor-pointer">LinkedIn</li>
+              <li className="px-4 cursor-pointer">Instagram</li>
+              <li className="px-4 cursor-pointer">Phone Number</li>
+              <li className="px-4 cursor-pointer">Email Info</li>
+            </ul>
+          </nav>
         </motion.section>
       )}
     </>
