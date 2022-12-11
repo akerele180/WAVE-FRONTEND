@@ -228,9 +228,9 @@ const ApplyForLoan = () => {
                     <span className="text-orange">&#9888;</span> Please, read
                     the{" "}
                     <a
-                      href="/src/assets/docs/Wave Term_Conditions and Privacy Policy.pdf"
+                      href="../../../assets/docs/Wave_Term_Conditions_and_Privacy_Policy.pdf"
                       target="_blank"
-                      download="WAVE - Terms & condition, Privacy Policy"
+                      download="Wave Term_Conditions_and_Privacy_Policy.pdf"
                       className="underline text-primary"
                     >
                       Terms and Condition
