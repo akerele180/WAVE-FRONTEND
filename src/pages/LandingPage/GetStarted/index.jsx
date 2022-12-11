@@ -14,13 +14,13 @@ const GetStarted = () => {
     >
       <div>
         <Heading heading={"Get Started"} />
-        <Link to="/loan-apply" state={"Apply for Quick Loans"}>
+        <Link className="hidden" to="/loan-apply" state={"Apply for Quick Loans"}>
           <button className="mt-10 mb-2 p-3 w-full md:w-6/12 cursor-pointer bg-primary-light ease-in duration-75 hover:-translate-y-1">
             Quick Loans
           </button>
           <br />
         </Link>
-        <Link to="/loan-apply" state={"Apply for Salary Loan"}>
+        <Link className="hidden" to="/loan-apply" state={"Apply for Salary Loan"}>
           <button className="my-2 p-3 w-full md:w-6/12 cursor-pointer bg-orange-light ease-in duration-75 hover:-translate-y-1">
             Salary Loans
           </button>
