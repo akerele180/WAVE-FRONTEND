@@ -31,7 +31,7 @@ const Stage4 = () => {
           type="text"
           readOnly
           name="first_name"
-          // value={value.firstName}
+          value={value.firstName}
           id=""
           placeholder="first name"
           className="border p-1 md:p-2 w-full rounded bg-gray-100 mb-3"
@@ -45,7 +45,7 @@ const Stage4 = () => {
           type="text"
           readOnly
           name="last_name"
-          // value={value.lastName}
+          value={value.lastName}
           id=""
           placeholder="last name"
           className="border p-1 md:p-2 mb-3 w-full rounded bg-gray-100"
@@ -59,7 +59,7 @@ const Stage4 = () => {
           type="text"
           readOnly
           name="phone_number"
-          // value={value.phoneNumber}
+          value={value.phoneNumber}
           id=""
           placeholder="0809 000 1111"
           className="border p-1 md:p-2 w-full rounded bg-gray-100 mb-3"
@@ -74,7 +74,7 @@ const Stage4 = () => {
           readOnly
           name="email"
           id="email"
-          // value={value.email}
+          value={value.email}
           placeholder="youremail@xyz.com"
           className="border p-1 md:p-2 w-full rounded bg-gray-100 mb-3"
         />
@@ -82,7 +82,6 @@ const Stage4 = () => {
 
         <button
           type="submit"
-          // value=""
           className="bg-secondary-dark text-white mx-auto text-center py-2 px-6 cursor-pointer hover:bg-secondary hover:text-black flex justify-center"
         >
           Send OTP
