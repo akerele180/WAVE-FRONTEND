@@ -307,6 +307,9 @@ const ApplyForLoanResponse = () => {
       navigate("/");
       window.location.reload();
     }
+    setTimeout(() => {
+      navigate("/loan-application-1");
+    }, 500);
   }, [loading3]);
 
   return (
