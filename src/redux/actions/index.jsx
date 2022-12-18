@@ -1,7 +1,5 @@
-import { Navigate } from "react-router-dom";
+import { data } from "autoprefixer";
 import { Slide, toast } from "react-toastify";
-import { REGISTER_CUSTOMER } from "../actionTypes";
-// import { GETRequest, sendGETRequest } from "../../utils/hooks";
 export const getOrganizationInitialize = (setLoading) => {
   return async (dispatch) => {
     setLoading(true);
@@ -116,30 +114,273 @@ export const customerConsent = (setLoading3, id, bearerToken) => {
 
       if (res.ok) {
         const data = await res.json();
-        toast.success("🦄 Consent Saved", {
+        await dispatch({
+          type: "SAVE_CUSTOMER_CONSENT",
+          payload: data,
+        });
+      } else {
+        await dispatch({
+          type: "SAVE_CUSTOMER_CONSENT",
+          payload: { status: true },
+        });
+        setLoading3(true);
+      }
+    } catch (error) {
+      await dispatch({
+        type: "SAVE_CUSTOMER_CONSENT",
+        payload: { status: true },
+      });
+      setLoading3(false);
+      return error;
+    }
+  };
+};
+
+export const loanOptions = (setLoading, urlId, bearerToken, offer, id) => {
+  return async (dispatch) => {
+    setLoading(true);
+    try {
+      var raw = JSON.stringify({
+        offer,
+        _id: id,
+      });
+      var requestOptions = {
+        method: "POST",
+        headers: new Headers({
+          Authorization: `Bearer ${bearerToken}`,
+          "x-tag":
+            "OWU5MWQ5N2U1YzgzZGFhZWM0ZTc4NzMyYzgwOGMxZTY1MTc1N2ExNGJhOGE2OTk1NTNlODk1M2IzZjcxYzgzYS8vLy8vLzE2NTYwMTIxNzQ4MDI=",
+          "Content-Type": "application/json",
+        }),
+        body: raw,
+        redirect: "follow",
+      };
+
+      const res = await fetch(
+        `https://api.veendhq.com/users/${urlId}/loanoptions`,
+        requestOptions
+      );
+
+      if (res.ok) {
+        setLoading(false);
+        const data = await res.json();
+        toast("🦄 Loan Options Retrieved", {
           position: "top-center",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: true,
           theme: "colored",
           transition: Slide,
         });
 
         await dispatch({
-          type: "SAVE_CUSTOMER_CONSENT",
+          type: "GET_LOAN_OPTIONS",
           payload: data,
         });
       } else {
-        setLoading3(true);
-        toast.error("You are not eligible for loan at the moment", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          theme: "colored",
-          transition: Slide,
+        setLoading(false);
+        toast.error(
+          "Eligibility could not be processed. Please try again later.",
+          {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: true,
+            theme: "colored",
+            transition: Slide,
+          }
+        );
+        await dispatch({
+          type: "GET_LOAN_OPTIONS",
+          payload: data,
         });
+        return;
       }
     } catch (error) {
-      setLoading3(false);
+      setLoading(false);
+      return error;
+    }
+  };
+};
+
+export const loanTerms = (
+  setLoading,
+  urlId,
+  bearerToken,
+  amount,
+  id,
+  channel
+) => {
+  return async (dispatch) => {
+    setLoading(true);
+    try {
+      var raw = JSON.stringify({
+        amount,
+        _id: id,
+        channel,
+      });
+      var requestOptions = {
+        method: "POST",
+        headers: new Headers({
+          Authorization: `Bearer ${bearerToken}`,
+          "x-tag":
+            "OWU5MWQ5N2U1YzgzZGFhZWM0ZTc4NzMyYzgwOGMxZTY1MTc1N2ExNGJhOGE2OTk1NTNlODk1M2IzZjcxYzgzYS8vLy8vLzE2NTYwMTIxNzQ4MDI=",
+          "Content-Type": "application/json",
+        }),
+        body: raw,
+        redirect: "follow",
+      };
+
+      const res = await fetch(
+        `https://api.veendhq.com/users/${urlId}/accept`,
+        requestOptions
+      );
+
+      if (res.ok) {
+        setLoading(false);
+        const data = await res.json();
+
+        await dispatch({
+          type: "ACCEPT_LOAN_TERMS",
+          payload: data,
+        });
+      } else {
+        setLoading(false);
+        toast.error(
+          "Eligibility could not be processed. Please try again later.",
+          {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: true,
+            theme: "colored",
+            transition: Slide,
+          }
+        );
+        await dispatch({
+          type: "ACCEPT_LOAN_TERMS",
+          payload: data,
+        });
+        return;
+      }
+    } catch (error) {
+      setLoading(false);
+      return error;
+    }
+  };
+};
+
+export const sendCustomerOTP = (setLoading, bearerToken) => {
+  return async (dispatch) => {
+    setLoading(true);
+    try {
+      var raw = JSON.stringify({});
+      var requestOptions = {
+        method: "POST",
+        headers: new Headers({
+          Authorization: `Bearer ${bearerToken}`,
+          "x-tag":
+            "OWU5MWQ5N2U1YzgzZGFhZWM0ZTc4NzMyYzgwOGMxZTY1MTc1N2ExNGJhOGE2OTk1NTNlODk1M2IzZjcxYzgzYS8vLy8vLzE2NTYwMTIxNzQ4MDI=",
+          "Content-Type": "application/json",
+        }),
+        body: raw,
+        redirect: "follow",
+      };
+
+      const res = await fetch(
+        "https://api.veendhq.com/sendotp",
+        requestOptions
+      );
+
+      if (res.ok) {
+        setLoading(false);
+        const data = await res.json();
+
+        await dispatch({
+          type: "SEND_OTP",
+          payload: data,
+        });
+      } else {
+        setLoading(false);
+        toast.error(
+          "Eligibility could not be processed. Please try again later.",
+          {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: true,
+            theme: "colored",
+            transition: Slide,
+          }
+        );
+        await dispatch({
+          type: "SEND_OTP",
+          payload: data,
+        });
+        return;
+      }
+    } catch (error) {
+      setLoading(false);
+      return error;
+    }
+  };
+};
+
+export const verifyCustomerOTP = (
+  setLoading,
+  bearerToken,
+  otp,
+  firstName,
+  lastName,
+  email
+) => {
+  return async (dispatch) => {
+    setLoading(true);
+    try {
+      var raw = JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        otp,
+      });
+      var requestOptions = {
+        method: "POST",
+        headers: new Headers({
+          Authorization: `Bearer ${bearerToken}`,
+          "x-tag":
+            "OWU5MWQ5N2U1YzgzZGFhZWM0ZTc4NzMyYzgwOGMxZTY1MTc1N2ExNGJhOGE2OTk1NTNlODk1M2IzZjcxYzgzYS8vLy8vLzE2NTYwMTIxNzQ4MDI=",
+          "Content-Type": "application/json",
+        }),
+        body: raw,
+        redirect: "follow",
+      };
+
+      const res = await fetch(
+        "https://api.veendhq.com/verifyotp",
+        requestOptions
+      );
+
+      if (res.ok) {
+        setLoading(false);
+        const data = await res.json();
+
+        await dispatch({
+          type: "VERIFY_OTP",
+          payload: data,
+        });
+      } else {
+        setLoading(false);
+        toast.error("Wrong OTP. Please verify and try again.", {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: true,
+
+          transition: Slide,
+        });
+        await dispatch({
+          type: "VERIFY_OTP",
+          payload: data,
+        });
+        return;
+      }
+    } catch (error) {
+      setLoading(false);
       return error;
     }
   };

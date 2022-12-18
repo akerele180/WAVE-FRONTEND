@@ -23,7 +23,7 @@ const HomePage = () => {
             within the next 30 minutes. No Paper work!
           </p>
           <p className="pb-3">
-            We also offer Federal and Sate civil servants under Remita payroll
+            We also offer Federal and State civil servants under Remita payroll
             Instant loans! No stress...
           </p>
         </div>

@@ -13,6 +13,7 @@ import {
 } from "../../../redux/actions";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Reject } from "../Responses";
 
 const ApplyForLoan = () => {
   const [loading, setLoading] = useState(false);
@@ -50,18 +51,14 @@ const ApplyForLoan = () => {
 
   useEffect(() => {
     setBankListOptions(organization?.banklist);
-
-    return () => {
-      console.log("fetching done");
-    };
   }, [organization]);
 
   const options = bankListOptions?.map((banks) => {
     return { label: banks.bankName, value: banks._id };
   });
 
-  const handleSubmitt = (data) => {
-    dispatch(registerCustomer(setLoading2, data.phone_number));
+  const handleSubmitt = async (data) => {
+    await dispatch(registerCustomer(setLoading2, data.phone_number));
   };
 
   return (
@@ -79,12 +76,7 @@ const ApplyForLoan = () => {
             <Heading heading={location?.state} />
             <form
               className="mt-5 md:mt-10"
-              onSubmit={
-                handleSubmit(handleSubmitt)
-
-                // handleCustomerApplication(phoneRef.current.value);
-                // dispatch(registerCustomer(setLoading2, phoneRef.current.value))
-              }
+              onSubmit={handleSubmit(handleSubmitt)}
             >
               <input
                 type="number"
@@ -228,9 +220,9 @@ const ApplyForLoan = () => {
                     <span className="text-orange">&#9888;</span> Please, read
                     the{" "}
                     <a
-                      href="/src/assets/docs/Wave Term_Conditions and Privacy Policy.pdf"
+                      href="../T&C"
                       target="_blank"
-                      download="WAVE - Terms & condition, Privacy Policy"
+                      // download="../../../assets/docs/"
                       className="underline text-primary"
                     >
                       Terms and Condition
@@ -252,14 +244,7 @@ const ApplyForLoan = () => {
           <div className="max-md:hidden">
             <img src={ProductImage} alt="" />
           </div>
-          {/* <button
-            type="button"
-            className="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-            onClick={() => setShowConsentModal(true)}
-          >
-            Launch demo modal
-          </button> */}
-          {/* Footer nav for social links */}
+
           <nav className="col-span-2 max-md:hidden">
             <ul className="flex items-center justify-center">
               <li className="px-4 cursor-pointer" id="myBtn">
@@ -289,6 +274,10 @@ const ApplyForLoanResponse = () => {
     (state) => state.registeredCustomer
   );
 
+  const customerConsent22 = useSelector(
+    (state) => state.registeredCustomer.customerConsent
+  );
+
   const handleCustomerConsent = async () => {
     await dispatch(
       customerConsent(
@@ -303,196 +292,88 @@ const ApplyForLoanResponse = () => {
   }, []);
 
   useEffect(() => {
-    if (loading3) {
-      navigate("/");
-      window.location.reload();
+    // if (loading3) {
+    //   navigate("/");
+    //   window.location.reload();
+    // }
+
+    // setTimeout(() => {
+    //   navigate("/loan-application-1");
+    // }, 1500);
+    
+    if (customerConsent22.status === "success") {
+      navigate("/loan-application-1");
     }
-  }, [loading3]);
+  }, [customerConsent22]);
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
-    >
-      <div className="mx-auto w-[300px]">
-        <img src={ThankYou} alt="" className="w-full" />
-      </div>
-      <div>
-        <p className="text-center hidden">Thank you for contacting us!</p>
-        <p className="text-center px-4">
-          We are currently processing your loan request. Please be patient with
-          us!
-        </p>
-        <p className="flex items-center text-center justify-center mt-4">
-          <BsSuitHeartFill size={20} className="text-primary mr-1" /> WAVE
-        </p>
-      </div>
-      <nav className="col-span-2 max-md:hidden absolute bottom-4 left-0 right-0">
-        <ul className="flex items-center justify-center">
-          <li className="px-4 cursor-pointer">Twitter</li>
-          <li className="px-4 cursor-pointer">Facebook</li>
-          <li className="px-4 cursor-pointer">LinkedIn</li>
-          <li className="px-4 cursor-pointer">Instagram</li>
-          <li className="px-4 cursor-pointer">Phone Number</li>
-          <li className="px-4 cursor-pointer">Email Info</li>
-        </ul>
-      </nav>
-    </motion.section>
+    <>
+      {customerConsent22?.status ? (
+        <Reject />
+      ) : (
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
+        >
+          <div className="mx-auto w-[300px]">
+            <img src={ThankYou} alt="" className="w-full" />
+          </div>
+          <div>
+            <p className="text-center hidden">Thank you for contacting us!</p>
+            <p className="text-center px-4">
+              We are currently processing your loan request. Please be patient
+              with us!
+            </p>
+            <p className="flex items-center text-center justify-center mt-4">
+              <BsSuitHeartFill size={20} className="text-primary mr-1" /> WAVE
+            </p>
+          </div>
+          <nav className="col-span-2 max-md:hidden absolute bottom-4 left-0 right-0">
+            <ul className="flex items-center justify-center">
+              <li className="px-4 cursor-pointer">Twitter</li>
+              <li className="px-4 cursor-pointer">Facebook</li>
+              <li className="px-4 cursor-pointer">LinkedIn</li>
+              <li className="px-4 cursor-pointer">Instagram</li>
+              <li className="px-4 cursor-pointer">Phone Number</li>
+              <li className="px-4 cursor-pointer">Email Info</li>
+            </ul>
+          </nav>
+        </motion.section>
+      )}
+      {/* (
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
+      >
+        <div className="mx-auto w-[300px]">
+          <img src={ThankYou} alt="" className="w-full" />
+        </div>
+        <div>
+          <p className="text-center hidden">Thank you for contacting us!</p>
+          <p className="text-center px-4">
+            We are currently processing your loan request. Please be patient
+            with us!
+          </p>
+          <p className="flex items-center text-center justify-center mt-4">
+            <BsSuitHeartFill size={20} className="text-primary mr-1" /> WAVE
+          </p>
+        </div>
+        <nav className="col-span-2 max-md:hidden absolute bottom-4 left-0 right-0">
+          <ul className="flex items-center justify-center">
+            <li className="px-4 cursor-pointer">Twitter</li>
+            <li className="px-4 cursor-pointer">Facebook</li>
+            <li className="px-4 cursor-pointer">LinkedIn</li>
+            <li className="px-4 cursor-pointer">Instagram</li>
+            <li className="px-4 cursor-pointer">Phone Number</li>
+            <li className="px-4 cursor-pointer">Email Info</li>
+          </ul>
+        </nav>
+      </motion.section>
+      ) */}
+    </>
   );
 };
-
-// const WaveConsentModal = (props) => {
-//   return (
-//     <div
-//       className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-//       id="exampleModal"
-//       tabindex="-1"
-//     >
-//       <div className="modal-dialog relative w-auto pointer-events-none">
-//         <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-//           <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-//             <h5
-//               className="text-xl font-medium leading-normal text-gray-800"
-//               id="exampleModalLabel"
-//             >
-//               Consent
-//             </h5>
-//             <button
-//               type="button"
-//               className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-//               data-bs-dismiss="modal"
-//               aria-label="Close"
-//             ></button>
-//           </div>
-//           <div className="modal-body relative p-4 text-center font-light">
-//             I hereby authorize{" "}
-//             <strong>Waveafricabusinessconsultinglimited </strong>to obtain my
-//             personal dara from 3rd parties, deduct loan settlements from my
-//             salary and debit bank accounts linked to my identity for repayments.
-//             I acknowledge that all information provided is accurate and
-//             understand that once approved, this application is irreversible.
-//           </div>
-//           <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-//             <button
-//               type="button"
-//               className="px-6
-//           py-2.5
-//           bg-purple-600
-//           text-white
-//           font-medium
-//           text-xs
-//           leading-tight
-//           rounded
-//           shadow-md
-//           hover:bg-purple-700 hover:shadow-lg
-//           focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0
-//           active:bg-purple-800 active:shadow-lg
-//           transition
-//           duration-150
-//           ease-in-out"
-//               data-bs-dismiss="modal"
-//             >
-//               Decline
-//             </button>
-//             <button
-//               type="button"
-//               className="px-6
-//       py-2.5
-//       bg-blue-600
-//       text-white
-//       font-medium
-//       text-xs
-//       leading-tight
-//       rounded
-//       shadow-md
-//       hover:bg-blue-700 hover:shadow-lg
-//       focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-//       active:bg-blue-800 active:shadow-lg
-//       transition
-//       duration-150
-//       ease-in-out
-//       ml-1"
-//             >
-//               Consent
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const WaveConsentModal = () => {
-//   const [showModal, setShowModal] = useState(false);
-//   return (
-//     <>
-//       <button
-//         className="bg-blue-200 text-black active:bg-blue-500
-//       font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-//         type="button"
-//         onClick={() => setShowModal(true)}
-//       >
-//         Fill Details
-//       </button>
-//       {showModal ? (
-//         <>
-//           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-//             <div className="relative w-auto my-6 mx-auto max-w-3xl">
-//               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-//                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
-//                   <h3 className="text-3xl font=semibold">General Info</h3>
-//                   <button
-//                     className="bg-transparent border-0 text-black float-right"
-//                     onClick={() => setShowModal(false)}
-//                   >
-//                     <span className="text-black opacity-7 h-6 w-6 text-xl block bg-gray-400 py-0 rounded-full">
-//                       x
-//                     </span>
-//                   </button>
-//                 </div>
-//                 <div className="relative p-6 flex-auto">
-//                   <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full">
-//                     <label className="block text-black text-sm font-bold mb-1">
-//                       First Name
-//                     </label>
-//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
-//                     <label className="block text-black text-sm font-bold mb-1">
-//                       Last Name
-//                     </label>
-//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
-//                     <label className="block text-black text-sm font-bold mb-1">
-//                       Address
-//                     </label>
-//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
-//                     <label className="block text-black text-sm font-bold mb-1">
-//                       City
-//                     </label>
-//                     <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
-//                   </form>
-//                 </div>
-//                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-//                   <button
-//                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-//                     type="button"
-//                     onClick={() => setShowModal(false)}
-//                   >
-//                     Close
-//                   </button>
-//                   <button
-//                     className="text-white bg-yellow-500 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-//                     type="button"
-//                     onClick={() => setShowModal(false)}
-//                   >
-//                     Submit
-//                   </button>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </>
-//       ) : null}
-//     </>
-//   );
-// };

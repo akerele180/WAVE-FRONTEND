@@ -6,8 +6,6 @@ import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
-import { Bars } from "react-loader-spinner";
-import { toast } from "react-toastify";
 
 const ContactUsPage = () => {
   const [show, setShow] = useState(false);
@@ -75,8 +73,9 @@ const ContactUsPage = () => {
             <Heading heading={"Contact Us"} />
             <form
               className="mt-5 md:mt-10"
-              onSubmit={handleSubmit(sendEmail)}
-              ref={form}
+              onSubmit={handleSubmit((data) => {
+                reset();
+              })}
             >
               <input
                 type="text"
@@ -172,22 +171,11 @@ const ContactUsPage = () => {
                 <p className="text-red-600">Please type in your message.</p>
               )}
               <button
-                className="bg-secondary flex items-center justify-center text-center py-3 w-4/12 mt-4 disabled"
+                className="bg-secondary py-3 w-4/12 mt-4"
                 type="submit"
+                // onClick={handleShow}
               >
-                {loading ? (
-                  <Bars
-                    height="24"
-                    width="24"
-                    color="#000"
-                    ariaLabel="bars-loading"
-                    wrapperStyle={{}}
-                    wrapperclassName="text-center flex items-center justify-center"
-                    visible={true}
-                  />
-                ) : (
-                  "SEND"
-                )}
+                SEND
               </button>
             </form>
           </div>
@@ -198,10 +186,26 @@ const ContactUsPage = () => {
 
           <nav className="col-span-2 max-md:hidden">
             <ul className="flex items-center justify-center">
-              <li className="px-4 cursor-pointer">Twitter</li>
-              <li className="px-4 cursor-pointer">Facebook</li>
+              <li className="px-4 cursor-pointer">
+                <a href="https://twitter.com/GetWaveafrica_" target="_blank">
+                  Twitter
+                </a>
+              </li>
+              <li className="px-4 cursor-pointer">
+                {" "}
+                <a
+                  href="https://www.facebook.com/profile.php?id=100087218077643"
+                  target="_blank"
+                >
+                  Facebook
+                </a>
+              </li>
               <li className="px-4 cursor-pointer">LinkedIn</li>
-              <li className="px-4 cursor-pointer">Instagram</li>
+              <li className="px-4 cursor-pointer">
+                <a href="https://instagram.com/getwaveafrica_" target="_blank">
+                  Instagram
+                </a>
+              </li>
               <li className="px-4 cursor-pointer">Phone Number</li>
               <li className="px-4 cursor-pointer">Email Info</li>
             </ul>

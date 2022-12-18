@@ -52,7 +52,6 @@ const ProofOfFunds = () => {
         (error) => {
           toast.error("Check your internet connection and try again");
           setLoading(false);
-          console.log(error.text);
         }
       );
   };
