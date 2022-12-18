@@ -97,7 +97,12 @@ const Navbar = () => {
 
         <ul className="absolute right-0 left-0 bottom-10 flex items-center justify-around gap-2 border-t-2 pt-3">
           <li>
-            <ImFacebook size={30} />
+            <a
+              href="https://www.facebook.com/profile.php?id=100087218077643"
+              target="_blank"
+            >
+              <ImFacebook size={30} />
+            </a>
           </li>
           <li>
             <a href="https://twitter.com/GetWaveafrica_" target="_blank">

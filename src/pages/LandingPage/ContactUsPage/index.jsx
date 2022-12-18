@@ -151,7 +151,15 @@ const ContactUsPage = () => {
                   Twitter
                 </a>
               </li>
-              <li className="px-4 cursor-pointer">Facebook</li>
+              <li className="px-4 cursor-pointer">
+                {" "}
+                <a
+                  href="https://www.facebook.com/profile.php?id=100087218077643"
+                  target="_blank"
+                >
+                  Facebook
+                </a>
+              </li>
               <li className="px-4 cursor-pointer">LinkedIn</li>
               <li className="px-4 cursor-pointer">
                 <a
