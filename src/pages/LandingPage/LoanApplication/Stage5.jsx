@@ -15,7 +15,7 @@ const Stage5 = () => {
   const { verifyOTP } = useSelector((state) => state.registeredCustomer);
 
   useEffect(() => {
-    if (verifyOTP.status === "success") {
+    if (verifyOTP?.status === "success") {
       setPage(true);
     }
   }, [verifyOTP]);

@@ -100,13 +100,20 @@ const Navbar = () => {
             <ImFacebook size={30} />
           </li>
           <li>
-            <ImTwitter size={30} />
+            <a href="https://twitter.com/GetWaveafrica_" target="_blank">
+              <ImTwitter size={30} />
+            </a>
           </li>
           <li>
             <ImLinkedin2 size={30} />
           </li>
           <li>
-            <GrInstagram size={30} />
+            <a
+              href="https://instagram.com/getwaveafrica_?igshid=ZmRlMzRkMDU="
+              target="_blank"
+            >
+              <GrInstagram size={30} />
+            </a>
           </li>
           <li>
             <MdMail size={30} />

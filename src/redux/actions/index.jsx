@@ -366,7 +366,7 @@ export const verifyCustomerOTP = (
         });
       } else {
         setLoading(false);
-        toast.error("Wrong OTP. Please verify try again.", {
+        toast.error("Wrong OTP. Please verify and try again.", {
           position: "top-center",
           autoClose: 2500,
           hideProgressBar: true,
