@@ -1,6 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyCustomerOTP } from "../../../redux/actions";
 import { Success } from "../Responses";
