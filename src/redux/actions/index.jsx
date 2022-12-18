@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import { Slide, toast } from "react-toastify";
 export const getOrganizationInitialize = (setLoading) => {
   return async (dispatch) => {
@@ -118,16 +119,17 @@ export const customerConsent = (setLoading3, id, bearerToken) => {
           payload: data,
         });
       } else {
-        setLoading3(true);
-        toast.error("You are not eligible for loan at the moment", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          theme: "colored",
-          transition: Slide,
+        await dispatch({
+          type: "SAVE_CUSTOMER_CONSENT",
+          payload: { status: true },
         });
+        setLoading3(true);
       }
     } catch (error) {
+      await dispatch({
+        type: "SAVE_CUSTOMER_CONSENT",
+        payload: { status: true },
+      });
       setLoading3(false);
       return error;
     }
@@ -198,6 +200,7 @@ export const loanOptions = (setLoading, urlId, bearerToken, offer, id) => {
     }
   };
 };
+
 export const loanTerms = (
   setLoading,
   urlId,
@@ -263,6 +266,7 @@ export const loanTerms = (
     }
   };
 };
+
 export const sendCustomerOTP = (setLoading, bearerToken) => {
   return async (dispatch) => {
     setLoading(true);
@@ -307,6 +311,70 @@ export const sendCustomerOTP = (setLoading, bearerToken) => {
         );
         await dispatch({
           type: "SEND_OTP",
+          payload: data,
+        });
+        return;
+      }
+    } catch (error) {
+      setLoading(false);
+      return error;
+    }
+  };
+};
+
+export const verifyCustomerOTP = (
+  setLoading,
+  bearerToken,
+  otp,
+  firstName,
+  lastName,
+  email
+) => {
+  return async (dispatch) => {
+    setLoading(true);
+    try {
+      var raw = JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        otp,
+      });
+      var requestOptions = {
+        method: "POST",
+        headers: new Headers({
+          Authorization: `Bearer ${bearerToken}`,
+          "x-tag":
+            "OWU5MWQ5N2U1YzgzZGFhZWM0ZTc4NzMyYzgwOGMxZTY1MTc1N2ExNGJhOGE2OTk1NTNlODk1M2IzZjcxYzgzYS8vLy8vLzE2NTYwMTIxNzQ4MDI=",
+          "Content-Type": "application/json",
+        }),
+        body: raw,
+        redirect: "follow",
+      };
+
+      const res = await fetch(
+        "https://api.veendhq.com/verifyotp",
+        requestOptions
+      );
+
+      if (res.ok) {
+        setLoading(false);
+        const data = await res.json();
+
+        await dispatch({
+          type: "VERIFY_OTP",
+          payload: data,
+        });
+      } else {
+        setLoading(false);
+        toast.error("Wrong OTP. Please verify try again.", {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: true,
+
+          transition: Slide,
+        });
+        await dispatch({
+          type: "VERIFY_OTP",
           payload: data,
         });
         return;

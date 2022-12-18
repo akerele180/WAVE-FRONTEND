@@ -35,7 +35,6 @@ const ContactUsPage = () => {
               <form
                 className="mt-5 md:mt-10"
                 onSubmit={handleSubmit((data) => {
-                  console.log(data);
                   reset();
                 })}
               >

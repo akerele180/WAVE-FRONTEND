@@ -4,6 +4,7 @@ import {
   GET_LOAN_OPTIONS,
   ACCEPT_LOAN_TERMS,
   SEND_OTP,
+  VERIFY_OTP,
 } from "../actionTypes";
 
 const initialState = {
@@ -37,6 +38,11 @@ export const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         sendOTP: action.payload,
+      };
+    case VERIFY_OTP:
+      return {
+        ...state,
+        verifyOTP: action.payload,
       };
     default:
       return state;

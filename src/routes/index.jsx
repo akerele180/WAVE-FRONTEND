@@ -24,6 +24,7 @@ const Stage4 = lazy(() =>
 );
 import WaveModal from "../components/Modal";
 import Stage5 from "../pages/LandingPage/LoanApplication/Stage5";
+import TermsAndCondition from "../pages/LandingPage/T&C";
 
 const AppRoutes = () => {
   return (
@@ -44,6 +45,7 @@ const AppRoutes = () => {
           <Route path="/loan-application-4" element={<Stage4 />} />
           <Route path="/verify-otp" element={<Stage5 />} />
         </Route>
+        <Route path="T&C" element={<TermsAndCondition />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </AnimatePresence>
