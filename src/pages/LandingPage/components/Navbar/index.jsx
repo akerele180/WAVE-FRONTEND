@@ -110,13 +110,12 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <ImLinkedin2 size={30} />
+            <a href="" target="_blank">
+              <ImLinkedin2 size={30} />
+            </a>
           </li>
           <li>
-            <a
-              href="https://instagram.com/getwaveafrica_?igshid=ZmRlMzRkMDU="
-              target="_blank"
-            >
+            <a href="https://instagram.com/getwaveafrica_" target="_blank">
               <GrInstagram size={30} />
             </a>
           </li>

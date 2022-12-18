@@ -162,10 +162,7 @@ const ContactUsPage = () => {
               </li>
               <li className="px-4 cursor-pointer">LinkedIn</li>
               <li className="px-4 cursor-pointer">
-                <a
-                  href="https://instagram.com/getwaveafrica_?igshid=ZmRlMzRkMDU="
-                  target="_blank"
-                >
+                <a href="https://instagram.com/getwaveafrica_" target="_blank">
                   Instagram
                 </a>
               </li>

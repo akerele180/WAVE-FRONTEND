@@ -40,7 +40,7 @@ export const Reject = () => {
       </div>
       <p className="md:text-center absolute bottom-4 left-0 right-0">
         For any inquiries or complaint, please call this number:{" "}
-        <strong>08123411196</strong> or email us at:{" "}
+        <strong>08119468747</strong> or email us at:{" "}
         <strong>loan@getwave.ng</strong>
       </p>
       {/* </motion */}
@@ -82,7 +82,7 @@ export const Success = () => {
 
       <p className="md:text-center absolute bottom-4 left-0 right-0">
         For any inquiries or complaint, please call this number:{" "}
-        <strong>08123411196</strong> or email us at:{" "}
+        <strong>08119468747</strong> or email us at:{" "}
         <strong>loan@getwave.ng</strong>
       </p>
     </motion.section>
