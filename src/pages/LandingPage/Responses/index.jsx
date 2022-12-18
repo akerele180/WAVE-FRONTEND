@@ -15,7 +15,7 @@ export const Reject = () => {
       className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
     >
       <div className="mx-auto w-[300px]">
-        <img src={Rejects} alt="" className="w-full" />
+        <img src={Rejects} alt="" className="w-full max-md:w-1/2" />
       </div>
       <div>
         <p className="text-center font-medium text-orange flex justify-center">
@@ -57,7 +57,7 @@ export const Success = () => {
       className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
     >
       <div className="mx-auto w-[300px]">
-        <img src={Successes} alt="" className="w-full" />
+        <img src={Successes} alt="" className="w-full max-md:w-1/2" />
       </div>
       <div>
         <p className="text-center flex justify-center items-center md:text-2xl font-bold text-orange">
