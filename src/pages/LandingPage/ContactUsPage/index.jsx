@@ -176,7 +176,7 @@ const ContactUsPage = () => {
           </div>
 
           <div className="max-md:hidden">
-            <img src={ProductImage} alt="" />
+            <img src={ProductImage} alt="product_image" />
           </div>
 
           <nav className="col-span-2 max-md:hidden">
@@ -217,7 +217,7 @@ const ContactUsPageResponse = () => {
   return (
     <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
       <div className="mx-auto w-[200px]">
-        <img src={ThankYou} alt="" className="w-full" />
+        <img src={ThankYou} alt="thank_you_image" className="w-full" />
       </div>
       <div>
         <p className="text-center">Thank you for contacting us!</p>

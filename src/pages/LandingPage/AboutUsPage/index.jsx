@@ -22,7 +22,7 @@ const AboutUsPage = () => {
           </p>
 
           <div className="basis-3/4">
-            <img src={AboutImage} alt="" />
+            <img src={AboutImage} alt="about_us_image" />
           </div>
         </div>
       </div>

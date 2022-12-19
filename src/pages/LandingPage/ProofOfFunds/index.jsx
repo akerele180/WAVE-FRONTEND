@@ -230,7 +230,7 @@ const ProofOfFunds = () => {
             </form>
           </div>
           <div className="max-md:hidden">
-            <img src={ProofOfFundz} alt="" />
+            <img src={ProofOfFundz} alt="proof_of_funds_image" />
           </div>
         </div>
       )}
@@ -244,7 +244,7 @@ const ProofOfFundsResponse = () => {
   return (
     <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
       <div className="mx-auto w-[300px]">
-        <img src={ThankYou} alt="" className="w-full" />
+        <img src={ThankYou} alt="thank_you_response_image" className="w-full" />
       </div>
       <div>
         <p className="text-center mb-3 text-2xl text-orange">Thank you</p>

@@ -40,7 +40,7 @@ const HomePage = () => {
         <img
           className="w-3/4 mx-auto max-lg:py-5 lg:float-right"
           src={Illustration}
-          alt=""
+          alt="hero_image"
         />
         <span className="lg:hidden w-full">
           <NavLink

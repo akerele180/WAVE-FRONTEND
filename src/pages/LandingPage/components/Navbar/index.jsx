@@ -16,7 +16,7 @@ const Navbar = () => {
     <header className="flex justify-between items-center h-[80px] relative">
       <div className="logo">
         <a href="/">
-          <img src={WaveLogo} alt="" className="" />
+          <img src={WaveLogo} alt="logo" className="" />
         </a>
       </div>
       <nav className="flex items-center">
@@ -49,7 +49,7 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between h-[80px] py-[5px]">
           <div className="logo">
-            <img src={WaveLogo} alt="" className="" />
+            <img src={WaveLogo} alt="logo" className="" />
           </div>
           <MdClose
             size={40}

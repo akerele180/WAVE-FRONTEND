@@ -10,7 +10,7 @@ function App() {
       <Suspense
         fallback={
           <div className="h-screen w-screen flex items-center  flex-col justify-center">
-            <img src={WaveLogo} alt="" className="w-3/12 md:w-1/12" />
+            <img src={WaveLogo} alt="logo" className="w-3/12 md:w-1/12" />
             <ThreeDots
               height="40"
               width="40"
