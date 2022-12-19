@@ -21,9 +21,9 @@ const Stage3 = lazy(() =>
 const Stage4 = lazy(() =>
   import("../pages/LandingPage/LoanApplication/Stage4")
 );
+const TermsAndCondition = lazy(() => import("../pages/LandingPage/T&C"));
 
 import Stage5 from "../pages/LandingPage/LoanApplication/Stage5";
-import TermsAndCondition from "../pages/LandingPage/T&C";
 
 const AppRoutes = () => {
   return (
