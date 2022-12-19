@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { FaHeartBroken } from "react-icons/fa";
 
@@ -8,12 +7,7 @@ import Rejects from "../../../assets/images/WAVE_WebApp(8).png";
 
 export const Reject = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
-    >
+    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
       <div className="mx-auto w-[300px]">
         <img src={Rejects} alt="" className="w-full max-md:w-1/2" />
       </div>
@@ -44,18 +38,13 @@ export const Reject = () => {
         <strong>loan@getwave.ng</strong>
       </p>
       {/* </motion */}
-    </motion.section>
+    </div>
   );
 };
 
 export const Success = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
-    >
+    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
       <div className="mx-auto w-[300px]">
         <img src={Successes} alt="" className="w-full max-md:w-1/2" />
       </div>
@@ -85,6 +74,6 @@ export const Success = () => {
         <strong>08119468747</strong> or email us at:{" "}
         <strong>loan@getwave.ng</strong>
       </p>
-    </motion.section>
+    </div>
   );
 };

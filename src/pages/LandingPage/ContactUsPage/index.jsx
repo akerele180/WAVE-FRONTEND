@@ -3,7 +3,7 @@ import { Heading } from "../components/Heading";
 import ProductImage from "../../../assets/images/WAVE_WebApp(3).png";
 import ThankYou from "../../../assets/images/WAVE_WebApp(5).png";
 import emailjs from "@emailjs/browser";
-import { motion } from "framer-motion";
+
 import { BsSuitHeartFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 
@@ -63,12 +63,7 @@ const ContactUsPage = () => {
       {show ? (
         <ContactUsPageResponse />
       ) : (
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
-        >
+        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative">
           <div>
             <Heading heading={"Contact Us"} />
             <form
@@ -210,7 +205,7 @@ const ContactUsPage = () => {
               <li className="px-4 cursor-pointer">Email Info</li>
             </ul>
           </nav>
-        </motion.section>
+        </div>
       )}
     </>
   );
@@ -220,12 +215,7 @@ export default ContactUsPage;
 
 const ContactUsPageResponse = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
-    >
+    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
       <div className="mx-auto w-[200px]">
         <img src={ThankYou} alt="" className="w-full" />
       </div>
@@ -249,6 +239,6 @@ const ContactUsPageResponse = () => {
           <li className="px-4 cursor-pointer">Email Info</li>
         </ul>
       </nav>
-    </motion.section>
+    </div>
   );
 };

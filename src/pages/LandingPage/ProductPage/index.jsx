@@ -1,17 +1,10 @@
 import React from "react";
 import { Heading } from "../components/Heading";
 import ProductImage from "../../../assets/images/WAVE_WebApp.png";
-import { motion } from "framer-motion";
 
 const ProductPage = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="max-md:mt-5 px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative lg:grid items-center"
-      // className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
-    >
+    <div className="max-md:mt-5 px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative lg:grid items-center">
       <div>
         <Heading heading={"Product"} />
         <div className="flex max-lg:flex-col-reverse">
@@ -32,11 +25,11 @@ const ProductPage = () => {
           </ul>
 
           <div className="max-md:mt-5 basis-3/4">
-            <img src={ProductImage} alt="" />
+            <img src={ProductImage} alt="product-image" />
           </div>
         </div>
       </div>
-    </motion.section>
+    </div>
   );
 };
 

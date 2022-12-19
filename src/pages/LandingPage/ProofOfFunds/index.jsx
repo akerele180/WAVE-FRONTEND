@@ -4,7 +4,7 @@ import { Heading } from "../components/Heading";
 import ThankYou from "../../../assets/images/WAVE_WebApp(10).png";
 import ProofOfFundz from "../../../assets/images/WAVE_WebApp(11).png";
 import { BsSuitHeartFill } from "react-icons/bs";
-import { motion } from "framer-motion";
+
 import { toast } from "react-toastify";
 import { Bars } from "react-loader-spinner";
 import { useForm } from "react-hook-form";
@@ -61,18 +61,12 @@ const ProofOfFunds = () => {
       {show ? (
         <ProofOfFundsResponse />
       ) : (
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
-        >
+        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative">
           <div>
             <Heading heading={"Apply for Proof of Funds"} />
             <form
               ref={form}
               className="mt-5 md:mt-10"
-              // onSubmit={handleSubmit(sendEmail)}
               onSubmit={handleSubmit(sendEmail)}
             >
               <input
@@ -238,7 +232,7 @@ const ProofOfFunds = () => {
           <div className="max-md:hidden">
             <img src={ProofOfFundz} alt="" />
           </div>
-        </motion.section>
+        </div>
       )}
     </>
   );
@@ -248,12 +242,7 @@ export default ProofOfFunds;
 
 const ProofOfFundsResponse = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative"
-    >
+    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
       <div className="mx-auto w-[300px]">
         <img src={ThankYou} alt="" className="w-full" />
       </div>
@@ -270,6 +259,6 @@ const ProofOfFundsResponse = () => {
         For any inquiries or compliant, please call this number{" "}
         <strong>0123456789</strong> or email <strong>loan@getwave.ng</strong>
       </p>
-    </motion.section>
+    </div>
   );
 };

@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react"; 
 import { NavLink } from "react-router-dom";
 import "./Button.style.css";
 import Illustration from "../../../assets/images/undraw_transfer_money_re_6o1h.svg";
 
 const HomePage = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
+      
       className="max-md:mt-10 lg:grid lg:grid-cols-2 items-center justify-center px-4 lg:w-[85vw] lg:mx-auto h-[calc(100vh-82px)] relative"
     >
       <div>
@@ -56,7 +53,7 @@ const HomePage = () => {
           </NavLink>
         </span>
       </div>
-    </motion.section>
+    </div>
   );
 };
 

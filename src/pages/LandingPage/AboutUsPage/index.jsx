@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+
 import React from "react";
 import AboutImage from "../../../assets/images/WAVE_WebApp(2).png";
 import { Heading } from "../components/Heading";
@@ -6,10 +6,8 @@ import "./styled.css";
 
 const AboutUsPage = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
+      
       className="max-md:mt-5 px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative lg:grid items-center"
       // className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
     >
@@ -28,7 +26,7 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-    </motion.section>
+    </div>
   );
 };
 
