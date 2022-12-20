@@ -26,7 +26,6 @@ const Stage5 = lazy(() =>
 );
 const TermsAndCondition = lazy(() => import("../pages/LandingPage/T&C"));
 
-
 const AppRoutes = () => {
   return (
     <Routes>
