@@ -4,7 +4,7 @@ import ProductImage from "../../../assets/images/WAVE_WebApp.png";
 
 const ProductPage = () => {
   return (
-    <div className="max-md:mt-5 px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative lg:grid items-center">
+    <div className="max-md:mt-5 px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative lg:grid items-center">
       <div>
         <Heading heading={"Product"} />
         <div className="flex max-lg:flex-col-reverse">

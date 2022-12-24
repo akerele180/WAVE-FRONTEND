@@ -53,7 +53,6 @@ const ContactUsPage = () => {
         (error) => {
           toast.error("Check your internet connection and try again");
           setLoading(false);
-          console.log(error.text);
         }
       );
   };
@@ -63,7 +62,7 @@ const ContactUsPage = () => {
       {show ? (
         <ContactUsPageResponse />
       ) : (
-        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative">
+        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative">
           <div>
             <Heading heading={"Contact Us"} />
             <form
@@ -178,33 +177,6 @@ const ContactUsPage = () => {
           <div className="max-md:hidden">
             <img src={ProductImage} alt="product_image" />
           </div>
-
-          <nav className="col-span-2 max-md:hidden">
-            <ul className="flex items-center justify-center">
-              <li className="px-4 cursor-pointer">
-                <a href="https://twitter.com/GetWaveafrica_" target="_blank">
-                  Twitter
-                </a>
-              </li>
-              <li className="px-4 cursor-pointer">
-                {" "}
-                <a
-                  href="https://www.facebook.com/profile.php?id=100087218077643"
-                  target="_blank"
-                >
-                  Facebook
-                </a>
-              </li>
-              <li className="px-4 cursor-pointer">LinkedIn</li>
-              <li className="px-4 cursor-pointer">
-                <a href="https://instagram.com/getwaveafrica_" target="_blank">
-                  Instagram
-                </a>
-              </li>
-              <li className="px-4 cursor-pointer">Phone Number</li>
-              <li className="px-4 cursor-pointer">Email Info</li>
-            </ul>
-          </nav>
         </div>
       )}
     </>
@@ -215,7 +187,7 @@ export default ContactUsPage;
 
 const ContactUsPageResponse = () => {
   return (
-    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
+    <div className="md:flex flex-col place-content-center h-[calc(93vh-82px)] relative">
       <div className="mx-auto w-[200px]">
         <img src={ThankYou} alt="thank_you_image" className="w-full" />
       </div>

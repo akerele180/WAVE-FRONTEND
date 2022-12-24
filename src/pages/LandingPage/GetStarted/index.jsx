@@ -6,7 +6,7 @@ import { Heading } from "../../LandingPage/components/Heading";
 
 const GetStarted = () => {
   return (
-    <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative">
+    <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative">
       <div>
         <Heading heading={"Get Started"} />
         <Link

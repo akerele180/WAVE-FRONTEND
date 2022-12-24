@@ -7,9 +7,13 @@ import Rejects from "../../../assets/images/WAVE_WebApp(8).png";
 
 export const Reject = () => {
   return (
-    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
+    <div className="md:flex flex-col place-content-center h-[calc(93vh-82px)] relative">
       <div className="mx-auto w-[300px]">
-        <img src={Rejects} alt="reject_response_image" className="w-full max-md:w-1/2" />
+        <img
+          src={Rejects}
+          alt="reject_response_image"
+          className="w-full max-md:w-1/2"
+        />
       </div>
       <div>
         <p className="text-center font-medium text-orange flex justify-center">
@@ -44,9 +48,13 @@ export const Reject = () => {
 
 export const Success = () => {
   return (
-    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
+    <div className="md:flex flex-col place-content-center h-[calc(93vh-82px)] relative">
       <div className="mx-auto w-[300px]">
-        <img src={Successes} alt="success_response_image" className="w-full max-md:w-1/2" />
+        <img
+          src={Successes}
+          alt="success_response_image"
+          className="w-full max-md:w-1/2"
+        />
       </div>
       <div>
         <p className="text-center flex justify-center items-center md:text-2xl font-bold text-orange">

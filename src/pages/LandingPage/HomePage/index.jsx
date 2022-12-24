@@ -5,7 +5,7 @@ import Illustration from "../../../assets/images/undraw_transfer_money_re_6o1h.s
 
 const HomePage = () => {
   return (
-    <div className="max-md:mt-10 lg:grid lg:grid-cols-2 items-center justify-center px-4 lg:w-[85vw] lg:mx-auto h-[calc(100vh-82px)] relative">
+    <div className="max-md:mt-10 lg:grid lg:grid-cols-2 items-center justify-center px-4 lg:w-[85vw] lg:mx-auto h-[calc(93vh-82px)] relative">
       <div>
         <div id="main-text">
           <h1 className="text-3xl md:text-5xl font-bold pb-5 lg:leading-[3.5rem]">

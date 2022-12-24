@@ -61,7 +61,7 @@ const ProofOfFunds = () => {
       {show ? (
         <ProofOfFundsResponse />
       ) : (
-        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative">
+        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative">
           <div>
             <Heading heading={"Apply for Proof of Funds"} />
             <form
@@ -205,7 +205,7 @@ const ProofOfFunds = () => {
               <input
                 type="text"
                 className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
-                placeholder="Referral Name"
+                placeholder="Referral Name (Optional)"
                 name="referral_name"
                 {...register("referral")}
               />
@@ -242,7 +242,7 @@ export default ProofOfFunds;
 
 const ProofOfFundsResponse = () => {
   return (
-    <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
+    <div className="md:flex flex-col place-content-center h-[calc(93vh-82px)] relative">
       <div className="mx-auto w-[300px]">
         <img src={ThankYou} alt="thank_you_response_image" className="w-full" />
       </div>

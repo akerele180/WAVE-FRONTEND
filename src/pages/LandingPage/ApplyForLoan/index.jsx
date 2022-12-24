@@ -65,7 +65,7 @@ const ApplyForLoan = () => {
       {registeredCustomer.status === "success" ? (
         <ApplyForLoanResponse />
       ) : (
-        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative">
+        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative">
           <div>
             <Heading heading={location?.state} />
             <form
@@ -305,7 +305,7 @@ const ApplyForLoanResponse = () => {
       {customerConsent22?.status ? (
         <Reject />
       ) : (
-        <div className="md:flex flex-col place-content-center h-[calc(100vh-82px)] relative">
+        <div className="md:flex flex-col place-content-center h-[calc(93vh-82px)] relative">
           <div className="mx-auto w-[300px]">
             <img src={ThankYou} alt="thank_you_image" className="w-full" />
           </div>

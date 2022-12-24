@@ -6,8 +6,8 @@ import "./styled.css";
 const AboutUsPage = () => {
   return (
     <div
-      className="max-md:mt-5 px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative lg:grid items-center"
-      // className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(100vh-82px)] relative"
+      className="max-md:mt-5 px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative lg:grid items-center"
+      // className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative"
     >
       <div>
         <Heading heading={"About Us"} />
