@@ -1,0 +1,14 @@
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 200px 0 0 0 #19cfbd;
+  transition: all ease 500ms;
+  color: white !important;
+}
+.slide {
+  transition: box-shadow ease-out 300ms;
+}
+
+.slide__mob {
+  background-color: #fff !important;
+  color: #19cfbd !important;
+}

@@ -1,0 +1,2 @@
+import WaveModal from "./Modal";
+

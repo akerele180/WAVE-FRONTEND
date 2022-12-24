@@ -1,0 +1,18 @@
+li:last-child a {
+  background: #19cfbd;
+  font-weight: 500;
+  color: #fff;
+}
+li:last-child a:hover {
+  color: white !important;
+}
+a.active {
+  color: #19cfbd;
+}
+.logo {
+  width: 100px;
+}
+header {
+  padding: 5px 5vw;
+}
+ 
