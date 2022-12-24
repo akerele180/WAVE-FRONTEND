@@ -2,7 +2,7 @@
 
 ---
 
-This project is handled by Tosin JAMES Akerele
+This project is handled by Tosin JAMES Akerelee
 ---
 
 ## Installation

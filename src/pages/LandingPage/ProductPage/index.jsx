@@ -8,7 +8,7 @@ const ProductPage = () => {
       <div>
         <Heading heading={"Product"} />
         <div className="flex max-lg:flex-col-reverse">
-          <ul className="list-disc max-md:mt-3">
+          <ul className="list-disc max-md:mt-3" id="main-text">
             <p className="pb-3 pt-4 md:pt-10">
               Wave products covers <strong>EVERYONE</strong> as we offer
               services that allows you to be financial FREE such as:
@@ -24,7 +24,7 @@ const ProductPage = () => {
             <li className="list-disc py-1 md:py-2 ml-8">And many more...</li>
           </ul>
 
-          <div className="max-md:mt-5 basis-3/4">
+          <div className="max-md:mt-5 basis-3/4" id="main-illustration">
             <img src={ProductImage} alt="product-image" />
           </div>
         </div>
