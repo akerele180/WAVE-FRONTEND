@@ -9,7 +9,7 @@ const HomePage = () => {
       <div>
         <div id="main-text">
           <h1 className="text-3xl md:text-5xl font-bold pb-5 lg:leading-[3.5rem]">
-            Get Quick Cash in <br />{" "}
+            Get Quick Cash in <br className="max-lg:hidden" />{" "}
             <span className="text-primary">30 Minutes</span>
           </h1>
           <p className="pb-3">
@@ -33,7 +33,10 @@ const HomePage = () => {
         </span>
       </div>
 
-      <div className="text-center max-lg:pb-10 " id="main-illustration">
+      <div
+        className="text-center max-lg:pb-10 max-lg:w-7/12 max-md:w-10/12 max-sm:w-auto mx-auto"
+        id="main-illustration"
+      >
         <img
           className="w-3/4 mx-auto max-lg:py-5 lg:float-right"
           src={Illustration}

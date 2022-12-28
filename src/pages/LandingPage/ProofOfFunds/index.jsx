@@ -37,6 +37,11 @@ const ProofOfFunds = () => {
       .then(
         (result) => {
           setLoading(false);
+          if (!result) {
+            setTimeout(() => {
+              setLoading(false);
+            }, 10000);
+          }
           toast.success("Application Sent", {
             position: "top-center",
             autoClose: 1500,
@@ -46,11 +51,12 @@ const ProofOfFunds = () => {
             progress: undefined,
             theme: "light",
           });
+          console.log(result);
           handleShow();
           reset();
         },
         (error) => {
-          toast.error("Check your internet connection and try again");
+          toast.error(error);
           setLoading(false);
         }
       );

@@ -200,17 +200,6 @@ const ContactUsPageResponse = () => {
           <BsSuitHeartFill size={20} className="text-primary mr-1" /> WAVE
         </p>
       </div>
-
-      <nav className="col-span-2 max-md:hidden absolute bottom-4 left-0 right-0">
-        <ul className="flex items-center justify-center">
-          <li className="px-4 cursor-pointer">Twitter</li>
-          <li className="px-4 cursor-pointer">Facebook</li>
-          <li className="px-4 cursor-pointer">LinkedIn</li>
-          <li className="px-4 cursor-pointer">Instagram</li>
-          <li className="px-4 cursor-pointer">Phone Number</li>
-          <li className="px-4 cursor-pointer">Email Info</li>
-        </ul>
-      </nav>
     </div>
   );
 };
