@@ -39,7 +39,7 @@ const GetStarted = () => {
         <br />
       </div>
 
-      <div className="max-md:hidden" id="main-illustration">
+      <div className="max-md:hidden w-10/12 mx-auto" id="main-illustration">
         <img src={GetStartedImage} alt="get_started_image" />
       </div>
     </div>

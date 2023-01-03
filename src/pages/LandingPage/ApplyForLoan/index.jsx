@@ -235,8 +235,8 @@ const ApplyForLoan = () => {
               </button>
             </form>
           </div>
-          <div className="max-md:hidden">
-            <img src={ProductImage} alt="product_image" />
+          <div className="max-md:hidden w-10/12 mx-auto">
+            <img src={ProductImage} alt="product_image" className="w-full" />
           </div>
         </div>
       )}
