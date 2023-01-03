@@ -9,7 +9,7 @@ This project is handled by Tosin JAMES Akerelee
 
 The frontend is developed using CRA + vite so to install it on your local machine, I suggest the following steps.
 
-1. Locate the project remote repository and grab (copy) the repository's ulr (SSH or HTTP).
+1. Locate the project remote repository and grab (copy) the repository's url (SSH or HTTP).
 2. Go to your terminal or whatever to create a folder to save the project using the following prompt: `mkdir <folder-name>`
 3. Move into the file directory by `cd <folder-name>`
 4. initialize the space by `git init`
