@@ -235,22 +235,9 @@ const ApplyForLoan = () => {
               </button>
             </form>
           </div>
-          <div className="max-md:hidden">
-            <img src={ProductImage} alt="product_image" />
+          <div className="max-md:hidden w-10/12 mx-auto">
+            <img src={ProductImage} alt="product_image" className="w-full" />
           </div>
-
-          <nav className="col-span-2 max-md:hidden">
-            <ul className="flex items-center justify-center">
-              <li className="px-4 cursor-pointer" id="myBtn">
-                Twitter
-              </li>
-              <li className="px-4 cursor-pointer">Facebook</li>
-              <li className="px-4 cursor-pointer">LinkedIn</li>
-              <li className="px-4 cursor-pointer">Instagram</li>
-              <li className="px-4 cursor-pointer">Phone Number</li>
-              <li className="px-4 cursor-pointer">Email Info</li>
-            </ul>
-          </nav>
         </div>
       )}
     </>
