@@ -4,6 +4,7 @@ import ProductImage from "../../../assets/images/WAVE_WebApp(3).png";
 import ThankYou from "../../../assets/images/WAVE_WebApp(5).png";
 import emailjs from "@emailjs/browser";
 import { Bars } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 import { BsSuitHeartFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
@@ -11,6 +12,7 @@ import { useForm } from "react-hook-form";
 const ContactUsPage = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const handleShow = () => {
     setShow(true);
   };
@@ -72,10 +74,13 @@ const ContactUsPage = () => {
           <div>
             <Heading heading={"Contact Us"} />
             <form
+              ref={form}
               className="mt-5 md:mt-10"
-              onSubmit={handleSubmit((data) => {
-                reset();
-              })}
+              // onSubmit={handleSubmit((data) => {
+              //   console.log(data);
+              //   // reset();
+              // })}
+              onSubmit={handleSubmit(sendEmail)}
             >
               <input
                 type="text"
@@ -170,7 +175,10 @@ const ContactUsPage = () => {
               {errors.message && errors.message.type === "required" && (
                 <p className="text-red-600">Please type in your message.</p>
               )}
-              <button className="bg-secondary py-3 w-4/12 mt-4" type="submit">
+              <button
+                className="bg-secondary flex items-center justify-center text-center py-3 w-4/12 mt-4"
+                type="submit"
+              >
                 {loading ? (
                   <Bars
                     height="24"
@@ -208,7 +216,7 @@ const ContactUsPageResponse = () => {
       <div>
         <p className="text-center">Thank you for contacting us!</p>
         <p className="text-center px-4">
-          We will attend to your message within the next 2 hours
+          We will attend to your message within the next 2 hours.
         </p>
         <p className="flex items-center text-center justify-center mt-4">
           <BsSuitHeartFill size={20} className="text-primary mr-1" /> WAVE

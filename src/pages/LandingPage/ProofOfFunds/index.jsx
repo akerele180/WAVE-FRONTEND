@@ -26,7 +26,6 @@ const ProofOfFunds = () => {
 
   const sendEmail = () => {
     setLoading(true);
-    console.log(handleSubmit);
 
     emailjs
       .sendForm(
