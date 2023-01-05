@@ -4,7 +4,7 @@ import "./Error.style.css";
 const Error404 = () => {
   return (
     <section className="page_404">
-      <div className="container">
+      <div className="">
         <div className="row">
           <div className="col-sm-12 ">
             <div className="col-sm-10 col-sm-offset-1  text-center">
@@ -15,10 +15,10 @@ const Error404 = () => {
               <div className="contant_box_404">
                 <h3 className="h2">Look like you're lost</h3>
 
-                <p>the page you are looking for is not available!</p>
+                <p>The page you are looking for is not available!</p>
 
                 <a href="/" className="link_404">
-                  &larr; Go to Home
+                  &larr; Go Home
                 </a>
               </div>
             </div>

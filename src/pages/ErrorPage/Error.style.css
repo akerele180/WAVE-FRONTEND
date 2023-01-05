@@ -13,9 +13,11 @@
 
 .four_zero_four_bg {
   background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-  height: 400px;
-  
-  background-position: center;
+  min-height: 400px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .four_zero_four_bg h1 {

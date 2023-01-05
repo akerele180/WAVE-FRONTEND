@@ -3,6 +3,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { BrowserRouter } from "react-router-dom";
 import WaveLogo from "./assets/images/Wave-Logo.png";
 import AppRoutes from "./routes";
+import "./App.css";
 
 function App() {
   return (

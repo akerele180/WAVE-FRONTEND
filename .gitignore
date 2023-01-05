@@ -9,8 +9,9 @@ lerna-debug.log*
 
 node_modules
 dist
-netlify.toml
 dist-ssr
+akerele180
+akerele180.pub
 *.local
 
 # Editor directories and files
