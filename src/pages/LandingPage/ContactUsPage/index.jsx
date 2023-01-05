@@ -3,6 +3,7 @@ import { Heading } from "../components/Heading";
 import ProductImage from "../../../assets/images/WAVE_WebApp(3).png";
 import ThankYou from "../../../assets/images/WAVE_WebApp(5).png";
 import emailjs from "@emailjs/browser";
+import { Bars } from "react-loader-spinner";
 
 import { BsSuitHeartFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
@@ -38,6 +39,11 @@ const ContactUsPage = () => {
       .then(
         (result) => {
           setLoading(false);
+          if (!result) {
+            setTimeout(() => {
+              setLoading(false);
+            }, 10000);
+          }
           toast.success("Message Sent", {
             position: "top-center",
             autoClose: 1500,
@@ -51,7 +57,7 @@ const ContactUsPage = () => {
           reset();
         },
         (error) => {
-          toast.error("Check your internet connection and try again");
+          toast.error(error);
           setLoading(false);
         }
       );
@@ -164,12 +170,20 @@ const ContactUsPage = () => {
               {errors.message && errors.message.type === "required" && (
                 <p className="text-red-600">Please type in your message.</p>
               )}
-              <button
-                className="bg-secondary py-3 w-4/12 mt-4"
-                type="submit"
-                // onClick={handleShow}
-              >
-                SEND
+              <button className="bg-secondary py-3 w-4/12 mt-4" type="submit">
+                {loading ? (
+                  <Bars
+                    height="24"
+                    width="24"
+                    color="#000"
+                    ariaLabel="bars-loading"
+                    wrapperStyle={{}}
+                    wrapperclassName="text-center flex items-center justify-center"
+                    visible={true}
+                  />
+                ) : (
+                  "SEND"
+                )}
               </button>
             </form>
           </div>

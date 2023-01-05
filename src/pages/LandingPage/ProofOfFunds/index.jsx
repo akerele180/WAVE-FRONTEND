@@ -26,6 +26,7 @@ const ProofOfFunds = () => {
 
   const sendEmail = () => {
     setLoading(true);
+    console.log(handleSubmit);
 
     emailjs
       .sendForm(
@@ -51,7 +52,6 @@ const ProofOfFunds = () => {
             progress: undefined,
             theme: "light",
           });
-          console.log(result);
           handleShow();
           reset();
         },
