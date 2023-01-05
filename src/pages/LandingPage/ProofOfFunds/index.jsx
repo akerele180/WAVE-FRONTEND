@@ -51,7 +51,6 @@ const ProofOfFunds = () => {
             progress: undefined,
             theme: "light",
           });
-          console.log(result);
           handleShow();
           reset();
         },
