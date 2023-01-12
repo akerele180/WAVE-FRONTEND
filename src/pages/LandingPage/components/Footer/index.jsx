@@ -9,7 +9,7 @@ import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <div className="footer my-6">
+    <div className="footer my-5">
       {" "}
       <nav className="col-span-2 max-md:hidden">
         <ul className="flex items-center space-x-10 justify-center">
