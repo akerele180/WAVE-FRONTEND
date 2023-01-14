@@ -70,16 +70,12 @@ const ContactUsPage = () => {
       {show ? (
         <ContactUsPageResponse />
       ) : (
-        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center h-full justify-center px-4 md:w-[85vw] md:mx-auto h-[calc(93vh-82px)] relative">
+        <div className="max-md:mt-5 md:grid md:grid-cols-2 items-center justify-center px-4 md:w-[85vw] md:mx-auto min-h-[calc(93vh-82px)] relative">
           <div>
             <Heading heading={"Contact Us"} />
             <form
               ref={form}
               className="mt-5 md:mt-10"
-              // onSubmit={handleSubmit((data) => {
-              //   console.log(data);
-              //   // reset();
-              // })}
               onSubmit={handleSubmit(sendEmail)}
             >
               <input
