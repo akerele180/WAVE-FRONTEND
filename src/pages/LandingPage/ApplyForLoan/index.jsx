@@ -168,7 +168,7 @@ const ApplyForLoan = () => {
               <input
                 ref={bvnRef}
                 type="number"
-                className="w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
+                className="hidden w-full md:w-8/12 block border border-orange mt-2 px-4 py-2 placeholder:text-sm placeholder focus:border-primary"
                 placeholder="Bank Verification Number (BVN)"
                 name="bvn"
                 {...register("bvn", {
@@ -184,13 +184,13 @@ const ApplyForLoan = () => {
                 })}
               />
               {errors.bvn && errors.bvn.type === "required" && (
-                <p className="text-red-600">BVN is required</p>
+                <p className="hidden text-red-600">BVN is required</p>
               )}
               {errors.bvn && errors.bvn.type === "maxLength" && (
-                <p className="text-red-600">{errors.bvn.message}</p>
+                <p className="hidden text-red-600">{errors.bvn.message}</p>
               )}
               {errors.bvn && errors.bvn.type === "minLength" && (
-                <p className="text-red-600">{errors.bvn.message}</p>
+                <p className="hidden text-red-600">{errors.bvn.message}</p>
               )}
               {/* terms and condition here */}
               <div className="flex items-start gap-2 pt-2">
